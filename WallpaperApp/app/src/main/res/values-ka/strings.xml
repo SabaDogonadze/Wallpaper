@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WallpaperApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">რეგისტრაცია</string>
+    <string name="email">ელ ფოსტა</string>
+    <string name="password">პაროლი</string>
+    <string name="repeat_password">გაიმეორეთ პაროლი</string>
+    <string name="login">შესვლა</string>
+    <string name="dont_have_an_account">არ გაქვთ ანგარიში?</string>
+    <string name="language">English</string>
+</resources>

@@ -1,0 +1,47 @@
+[versions]
+agp = "8.6.1"
+datastorePreferences = "1.1.2"
+kotlin = "1.9.0"
+coreKtx = "1.15.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.10.0"
+constraintlayout = "2.2.0"
+navVersion = "2.8.5"
+safeArgsVersion = "2.8.5"
+kotlinSerialization = "2.1.0"
+kotlinxSerializationJson = "1.8.0"
+moshiKotlin = "1.15.1"
+retrofitVersion = "2.11.0"
+filamentAndroid = "1.17.1"
+paging_version = "3.3.5"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+navigation-fragment = {group  = "androidx.navigation", name = "navigation-fragment", version.ref = "navVersion"}
+navigation-ui = {group  = "androidx.navigation", name = "navigation-ui", version.ref = "navVersion"}
+args-gradle-plugin = {group = "androidx.navigation", name ="navigation-safe-args-gradle-plugin", version.ref = "safeArgsVersion" }
+filament-android = { group = "com.google.ar.sceneform", name = "filament-android", version.ref = "filamentAndroid" }
+moshi-kotlin = { group = "com.squareup.moshi",name = "moshi-kotlin", version.ref = "moshiKotlin" }
+squareup-converter-moshi = { group = "com.squareup.retrofit2",name = "converter-moshi", version.ref = "retrofitVersion" }
+retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+paging = { group = "androidx.paging",name = "paging-runtime", version.ref = "paging_version" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+safeargs = {id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgsVersion" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
