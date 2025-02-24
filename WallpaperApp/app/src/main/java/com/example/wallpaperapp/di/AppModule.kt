@@ -3,6 +3,7 @@ package com.example.wallpaperapp.di
 import com.example.wallpaperapp.BuildConfig
 import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.data.discovery.DiscoveryService
+import com.example.wallpaperapp.data.discovery.search.SearchService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -48,6 +49,12 @@ object AppModule {
     @Provides
     fun provideGetDiscoveryImageService(retrofit: Retrofit): DiscoveryService {
         return retrofit.create(DiscoveryService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetDiscoverySearchImageService(retrofit: Retrofit): SearchService {
+        return retrofit.create(SearchService::class.java)
     }
 
 }

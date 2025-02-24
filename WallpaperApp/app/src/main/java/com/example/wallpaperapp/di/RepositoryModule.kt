@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import com.example.wallpaperapp.data.datastore.DataStoreRepositoryImpl
 import com.example.wallpaperapp.data.discovery.DiscoveryRepositoryImpl
 import com.example.wallpaperapp.data.discovery.DiscoveryService
+import com.example.wallpaperapp.data.discovery.search.SearchService
 import com.example.wallpaperapp.data.login.LogInRepositoryImpl
 import com.example.wallpaperapp.data.register.RegisterRepositoryImpl
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
@@ -41,7 +42,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideDiscoveryRepository(discoveryService: DiscoveryService): DiscoveryRepository {
-        return DiscoveryRepositoryImpl(discoveryService)
+    fun provideDiscoveryRepository(discoveryService: DiscoveryService,searchService: SearchService): DiscoveryRepository {
+        return DiscoveryRepositoryImpl(discoveryService,searchService)
     }
 }

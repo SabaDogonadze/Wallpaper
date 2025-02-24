@@ -1,5 +1,6 @@
 package com.example.wallpaperapp.data.paging
 
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -39,6 +40,7 @@ class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerV
         RecyclerView.ViewHolder(binding.root) {
         fun bind(image: DiscoveryImageModel) {
             binding.apply {
+                d("SearchView","Shemovida image")
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivDiscoveryImage)
             }
         }

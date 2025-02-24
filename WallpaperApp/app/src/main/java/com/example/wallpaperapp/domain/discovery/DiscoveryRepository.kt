@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface DiscoveryRepository {
     fun getDiscoveryImage(): Flow<PagingData<DiscoveryImageModel>>
+    fun getDiscoverySearchImage(query:String): Flow<PagingData<DiscoveryImageModel>>
 }
