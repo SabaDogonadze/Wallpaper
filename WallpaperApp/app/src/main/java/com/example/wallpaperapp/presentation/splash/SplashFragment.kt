@@ -1,5 +1,6 @@
 package com.example.wallpaperapp.presentation.splash
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log.d
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ class SplashFragment : Fragment() {
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
     private val splashViewModel: SplashViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

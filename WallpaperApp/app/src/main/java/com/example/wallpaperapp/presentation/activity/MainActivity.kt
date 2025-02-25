@@ -3,16 +3,15 @@ package com.example.wallpaperapp.presentation.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +22,21 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment?.findNavController()
             ?: throw IllegalStateException("NavController not found. Check your layout's NavHostFragment ID.")
 
-        binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            if (menuItem.itemId == navController.currentDestination?.id) {
+                return@setOnItemSelectedListener false
+            }
+
+            val navOptions = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setPopUpTo(menuItem.itemId, inclusive = true)
+                .build()
+
+            navController.navigate(menuItem.itemId, null, navOptions)
+            true
+        }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Define destination IDs where BottomNavigationView should be visible
             val bottomNavDestinations = setOf(
                 R.id.discoveryFragment,
                 R.id.settingFragment,
@@ -37,8 +47,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 View.GONE
             }
+            binding.bottomNavigationView.menu.findItem(destination.id)?.isChecked = true
         }
     }
-
 }
-
