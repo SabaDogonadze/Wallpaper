@@ -1,6 +1,7 @@
 package com.example.wallpaperapp.di
 
 import com.example.wallpaperapp.BuildConfig
+import com.example.wallpaperapp.data.detail.DetailService
 import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.data.discovery.DiscoveryService
 import com.example.wallpaperapp.data.discovery.search.SearchService
@@ -55,6 +56,12 @@ object AppModule {
     @Provides
     fun provideGetDiscoverySearchImageService(retrofit: Retrofit): SearchService {
         return retrofit.create(SearchService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDetailImageService(retrofit: Retrofit): DetailService {
+        return retrofit.create(DetailService::class.java)
     }
 
 }

@@ -47,14 +47,16 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
                 loginViewModel.userLoginResponseFlow.collect{
                     when(it){
                         is Resource.Success -> {
+                            binding.progressBar.visibility = View.GONE
                             d("inDadaStore","Resource Succsess shemovida log inshi")
                             loginViewModel.saveEmailAndUserSession(binding.etUserEmail.text.toString())
                             openDiscoveryFragment()
                         }
                         is Resource.Error ->  {
+                            binding.progressBar.visibility = View.GONE
                             Toast.makeText(
                                 context,
-                                "Login Failed,Please Check Inputs",
+                                "Error: ${it.error}",
                                 Toast.LENGTH_LONG
                             ).show()
                         }

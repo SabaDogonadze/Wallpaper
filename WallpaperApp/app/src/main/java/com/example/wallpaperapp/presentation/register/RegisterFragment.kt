@@ -51,12 +51,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 registerViewModel.userRegisterResponseFlow.collect{
                     when(it){
                         is Resource.Success -> {
+                            binding.progressBar.visibility = View.GONE
                             findNavController().popBackStack()
                         }
                         is Resource.Error ->  {
+                            binding.progressBar.visibility = View.GONE
                             Toast.makeText(
                                 context,
-                                "Login Failed,Please Check Inputs",
+                                "Error: ${it.error}",
                                 Toast.LENGTH_LONG
                             ).show()
                         }

@@ -26,6 +26,11 @@ class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerV
 
         }
     }
+    private var onItemClicked: ((DiscoveryImageModel) -> Unit)? = null
+
+    fun setonItemClickedListener(listener: (DiscoveryImageModel) -> Unit) {
+        onItemClicked = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return UserDataViewHolder(
@@ -42,6 +47,9 @@ class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerV
             binding.apply {
                 d("SearchView","Shemovida image")
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivDiscoveryImage)
+                root.setOnClickListener {
+                    onItemClicked?.invoke(image)
+                }
             }
         }
     }

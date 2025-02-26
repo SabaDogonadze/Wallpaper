@@ -2,10 +2,22 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/dark_purple"
     android:layout_height="match_parent"
     tools:context=".presentation.discovery.DiscoveryFragment">
+
+   <ProgressBar
+       android:id="@+id/progress_bar"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="50dp"
+       android:indeterminateTint="@color/white"
+       android:visibility="gone"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
    <androidx.appcompat.widget.SearchView
        android:layout_width="match_parent"

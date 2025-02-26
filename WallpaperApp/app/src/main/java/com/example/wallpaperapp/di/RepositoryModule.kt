@@ -3,12 +3,15 @@ package com.example.wallpaperapp.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.example.wallpaperapp.data.datastore.DataStoreRepositoryImpl
+import com.example.wallpaperapp.data.detail.DetailRepositoryImpl
+import com.example.wallpaperapp.data.detail.DetailService
 import com.example.wallpaperapp.data.discovery.DiscoveryRepositoryImpl
 import com.example.wallpaperapp.data.discovery.DiscoveryService
 import com.example.wallpaperapp.data.discovery.search.SearchService
 import com.example.wallpaperapp.data.login.LogInRepositoryImpl
 import com.example.wallpaperapp.data.register.RegisterRepositoryImpl
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
+import com.example.wallpaperapp.domain.detail.DetailRepository
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
 import com.example.wallpaperapp.domain.login.LoginRepository
 import com.example.wallpaperapp.domain.register.RegisterRepository
@@ -45,4 +48,11 @@ object RepositoryModule {
     fun provideDiscoveryRepository(discoveryService: DiscoveryService,searchService: SearchService): DiscoveryRepository {
         return DiscoveryRepositoryImpl(discoveryService,searchService)
     }
+
+    @Singleton
+    @Provides
+    fun provideDetailRepository(detailService: DetailService): DetailRepository {
+        return DetailRepositoryImpl(detailService)
+    }
+
 }

@@ -8,13 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.data.paging.DiscoveryRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.jar.Pack200.Packer.PASS
 
 @AndroidEntryPoint
 class DiscoveryFragment :
@@ -24,14 +24,17 @@ class DiscoveryFragment :
 
     override fun setUp() {
         setUpSearchBarColors()
-        clickListeners()
         bindObservers()
         setUpRecycler()
         setUpSearch()
+        clickListeners()
     }
 
     override fun clickListeners() {
-        PASS
+        adapter.setonItemClickedListener { item ->
+            val action = DiscoveryFragmentDirections.actionDiscoveryFragmentToDetailFragment(item.id)
+            findNavController().navigate(action)
+        }
     }
 
     private fun setUpRecycler() {
