@@ -1,35 +1,32 @@
-package com.example.wallpaperapp.data.paging
+package com.example.wallpaperapp.data.paging.collection
 
-import android.accounts.NetworkErrorException
 import android.util.Log
-import android.util.Log.d
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.wallpaperapp.BuildConfig
-import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
-import com.example.wallpaperapp.data.discovery.DiscoveryService
-import kotlinx.coroutines.delay
+import com.example.wallpaperapp.data.collection.CollectionModelDto
+import com.example.wallpaperapp.data.collection.CollectionService
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class DiscoveryImagePagingSource @Inject constructor(private val discoveryService: DiscoveryService) :
-    PagingSource<Int, DiscoveryImageResponse>() {
+class CollectionPagingSource@Inject constructor(private val collectionService: CollectionService) :
+PagingSource<Int, CollectionModelDto>() {
 
-    override fun getRefreshKey(state: PagingState<Int, DiscoveryImageResponse>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CollectionModelDto>): Int? {
         return state.anchorPosition?.let { position ->
             state.closestPageToPosition(position)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(position)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DiscoveryImageResponse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CollectionModelDto> {
         return try {
-           // delay(2000) // For testing bottom loader visibility
+            // delay(2000) // For testing bottom loader visibility
             val currentPage = params.key ?: 1
             val pageSize = params.loadSize
             Log.d("PagingDebug", "Loading page: $currentPage")
-            val response = discoveryService.getPhotos(currentPage,pageSize, clientId = BuildConfig.API_KEY)
+            val response = collectionService.getCollections(currentPage,pageSize, clientId = BuildConfig.API_KEY)
 
             if (response.isSuccessful) {
                 val photos = response.body() ?: emptyList()

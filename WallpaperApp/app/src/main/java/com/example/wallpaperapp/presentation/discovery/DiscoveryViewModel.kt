@@ -7,12 +7,8 @@ import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 

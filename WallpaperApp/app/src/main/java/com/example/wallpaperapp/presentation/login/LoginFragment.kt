@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentLoginBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
-import com.example.wallpaperapp.presentation.local_util.setLocale
+import com.example.wallpaperapp.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200.Packer.PASS

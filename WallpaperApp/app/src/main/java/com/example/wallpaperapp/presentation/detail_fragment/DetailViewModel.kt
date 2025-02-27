@@ -26,11 +26,9 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
                     is Resource.Loading -> {
                         _detailImageResponseFlow.value = Resource.Loading(it.loading)
                     }
-
                     is Resource.Success -> {
                         _detailImageResponseFlow.value = Resource.Success(dataSuccess = it.dataSuccess!!)
                     }
-
                     is Resource.Error -> {
                         _detailImageResponseFlow.value = Resource.Error(it.errorMessage)
                     }

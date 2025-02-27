@@ -1,4 +1,4 @@
-package com.example.wallpaperapp.presentation.local_util
+package com.example.wallpaperapp.util
 
 import android.content.Context
 import android.content.res.Configuration

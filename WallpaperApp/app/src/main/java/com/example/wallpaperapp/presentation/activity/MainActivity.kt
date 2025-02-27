@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val bottomNavDestinations = setOf(
                 R.id.discoveryFragment,
+                R.id.collectionFragment,
                 R.id.settingFragment,
                 R.id.favouriteFragment
             )

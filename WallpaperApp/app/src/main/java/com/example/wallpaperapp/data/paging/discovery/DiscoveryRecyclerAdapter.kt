@@ -1,4 +1,4 @@
-package com.example.wallpaperapp.data.paging
+package com.example.wallpaperapp.data.paging.discovery
 
 import android.util.Log.d
 import android.view.LayoutInflater

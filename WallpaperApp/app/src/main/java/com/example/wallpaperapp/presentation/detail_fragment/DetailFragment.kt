@@ -1,5 +1,6 @@
 package com.example.wallpaperapp.presentation.detail_fragment
 
+import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentDetailBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.presentation.bottom_sheet.BottomSheetFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200
@@ -27,10 +29,34 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     override fun clickListeners() {
         binding.ivFavourite.setOnClickListener {
             it.isSelected = !it.isSelected
-            if(it.isSelected){
-                Toast.makeText(requireContext(),"Add To Favourites",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(requireContext(),"Removed From The Favourites",Toast.LENGTH_SHORT).show()
+            if (it.isSelected) {
+                Toast.makeText(requireContext(), "Add To Favourites", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Removed From The Favourites", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+
+        /* so manually creating a instance of BottomSheetFragment, retrieve a image and then checking if this image is BitmapDrawable
+        * this is necessary to get .bitmap out of it. after that passing bitmap with factory method newInstance(bitmap) which guarantess that
+        * bottomSheetFragment will start with valid bitMap and it wont be a null  */
+
+        /* if i use safeArgs for example and say findNavControler.navigate(Directions.someAction) this will be a problematic
+        * because mitMap can be a large Object and it is not good practice to do it*/
+
+        //findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToBottomSheetFragment())
+        // parentFragmentManager is an instance of FragmentManager that manages child fragments.It is used to add the BottomSheetFragment to the UI.
+        // The show() method comes from the DialogFragment class (which BottomSheetDialogFragment extends).
+        // It displays the BottomSheetFragment as a dialog (a pop-up over the current screen).
+
+
+        binding.btnSetAs.setOnClickListener {
+            val drawable = binding.ivImage.drawable
+            if (drawable is BitmapDrawable) {
+                val bitmap = drawable.bitmap
+                BottomSheetFragment.newInstance(bitmap)
+                    .show(parentFragmentManager, "BottomSheetFragment")
             }
         }
     }
@@ -46,7 +72,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                                 .load(it.dataSuccess?.urls?.imageUrl)
                                 .into(binding.ivImage)
                         }
-
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(
@@ -55,11 +80,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                                 Toast.LENGTH_LONG
                             ).show()
                         }
-
                         is Resource.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                         }
-
                         null -> Pack200.Packer.PASS
                     }
                 }

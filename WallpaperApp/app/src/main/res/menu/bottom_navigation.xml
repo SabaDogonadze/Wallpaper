@@ -5,8 +5,9 @@
         android:icon="@drawable/ic_discovery"
         android:title="Discovey" />
     <item
+        android:id="@+id/collectionFragment"
         android:icon="@drawable/ic_category"
-        android:title="Category" />
+        android:title="collections" />
 
     <item
         android:id="@+id/favouriteFragment"
@@ -16,6 +17,6 @@
     <item
         android:id="@+id/settingFragment"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="Setting" />
 
 </menu>

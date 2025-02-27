@@ -1,4 +1,4 @@
-package com.example.wallpaperapp.presentation.discovery
+package com.example.wallpaperapp.presentation.collection
 
 import android.graphics.Color
 import android.util.Log
@@ -8,19 +8,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.wallpaperapp.data.paging.discovery.DiscoveryRecyclerAdapter
-import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
+import com.example.wallpaperapp.data.paging.collection.CollectionRecyclerAdapter
+import com.example.wallpaperapp.databinding.FragmentCollectionBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.jar.Pack200.Packer.PASS
 
 @AndroidEntryPoint
-class DiscoveryFragment :
-    BaseFragment<FragmentDiscoveryBinding>(FragmentDiscoveryBinding::inflate) {
-    private val discoveryViewModel: DiscoveryViewModel by viewModels()
-    private lateinit var adapter: DiscoveryRecyclerAdapter
+class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentCollectionBinding::inflate) {
+    private lateinit var adapter: CollectionRecyclerAdapter
+    private val collectionViewModel: CollectionViewModel by viewModels()
 
     override fun setUp() {
         setUpSearchBarColors()
@@ -31,14 +30,11 @@ class DiscoveryFragment :
     }
 
     override fun clickListeners() {
-        adapter.setonItemClickedListener { item ->
-            val action = DiscoveryFragmentDirections.actionDiscoveryFragmentToDetailFragment(item.id)
-            findNavController().navigate(action)
-        }
+       PASS
     }
 
     private fun setUpRecycler() {
-        adapter = DiscoveryRecyclerAdapter()
+        adapter = CollectionRecyclerAdapter()
         binding.apply {
             recyclerView.layoutManager = GridLayoutManager(context, 2)
             recyclerView.adapter = adapter
@@ -46,33 +42,17 @@ class DiscoveryFragment :
     }
 
     private fun bindObservers() {
-     /*   viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                discoveryViewModel.discoveryImageFlow.collect { pagingData ->
-                    adapter.submitData(pagingData)
-                }
-            }
-        }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                discoveryViewModel.pagingDataFlow.collect { pagingData ->
-                    adapter.submitData(pagingData)
-                }
-            }
-        }*/
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                discoveryViewModel.pagingDataFlow.collect { pagingData ->
+                collectionViewModel.pagingDataFlow.collect { pagingData ->
                     adapter.submitData(pagingData)
                 }
             }
         }
     }
 
-
     private fun setUpSearch() {
-        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     readQueryFromSearch(query)
@@ -83,7 +63,7 @@ class DiscoveryFragment :
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrBlank()) {
                     // User cleared the search view; update the ViewModel with an empty query
-                    discoveryViewModel.searchImages("")
+                    collectionViewModel.searchCollections("")
                 }
                 return true
             }
@@ -91,13 +71,13 @@ class DiscoveryFragment :
     }
 
     private fun readQueryFromSearch(query: String) {
-        discoveryViewModel.searchImages(query)
+        collectionViewModel.searchCollections(query)
         Log.d("SearchView", "Searching for: $query")
     }
 
     private fun setUpSearchBarColors() {
         val searchEditText =
-            binding.searchBar.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            binding.searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         searchEditText.setTextColor(Color.WHITE)
         searchEditText.setHintTextColor(Color.WHITE)
     }
