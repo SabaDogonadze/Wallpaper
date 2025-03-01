@@ -32,5 +32,4 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     private fun openLogInFragment(){
         findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToLoginFragment2())
     }
-
 }

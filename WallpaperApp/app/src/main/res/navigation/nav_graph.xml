@@ -84,5 +84,21 @@
         android:id="@+id/collectionFragment"
         android:name="com.example.wallpaperapp.presentation.collection.CollectionFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        tools:layout="@layout/fragment_collection" >
+        <action
+            android:id="@+id/action_collectionFragment_to_collectionDiscoveryFragment"
+            app:destination="@id/collectionDiscoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionDiscoveryFragment"
+        android:name="com.example.wallpaperapp.presentation.collection_discovery.CollectionDiscoveryFragment"
+        android:label="fragment_collection_discovery"
+        tools:layout="@layout/fragment_collection_discovery" >
+        <argument
+            android:name="collection_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_collectionDiscoveryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

@@ -2,23 +2,26 @@ package com.example.wallpaperapp.presentation.collection
 
 import android.graphics.Color
 import android.util.Log
+import android.util.Log.d
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.data.paging.collection.CollectionRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentCollectionBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.presentation.discovery.DiscoveryFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200.Packer.PASS
 
 @AndroidEntryPoint
 class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentCollectionBinding::inflate) {
-    private lateinit var adapter: CollectionRecyclerAdapter
+    private lateinit var collectionAdapter: CollectionRecyclerAdapter
     private val collectionViewModel: CollectionViewModel by viewModels()
 
     override fun setUp() {
@@ -30,14 +33,18 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
     }
 
     override fun clickListeners() {
-       PASS
+       collectionAdapter.setonItemClickedListener { item ->
+           val action = CollectionFragmentDirections.actionCollectionFragmentToCollectionDiscoveryFragment(item.id)
+           d("ppll","$item")
+           findNavController().navigate(action)
+       }
     }
 
     private fun setUpRecycler() {
-        adapter = CollectionRecyclerAdapter()
+        collectionAdapter = CollectionRecyclerAdapter()
         binding.apply {
             recyclerView.layoutManager = GridLayoutManager(context, 2)
-            recyclerView.adapter = adapter
+            recyclerView.adapter = collectionAdapter
         }
     }
 
@@ -45,7 +52,7 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collectionViewModel.pagingDataFlow.collect { pagingData ->
-                    adapter.submitData(pagingData)
+                    collectionAdapter.submitData(pagingData)
                 }
             }
         }
