@@ -48,7 +48,7 @@ class FavouriteRecyclerAdapter : ListAdapter<DetailImageModel, RecyclerView.View
     inner class FavouriteViewHolder(private val binding: FavouriteViewholderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DetailImageModel) {
-            binding.tvFavouriteText.setOnClickListener {
+            binding.root.setOnClickListener {
                 onItemClicked?.invoke(item)
             }
             Glide.with(binding.root.context).load(item.urls.imageUrl).circleCrop()

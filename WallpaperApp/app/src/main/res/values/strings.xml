@@ -21,6 +21,7 @@
     <string name="collections">collections</string>
     <string name="favourite">Favourite</string>
     <string name="setting">Setting</string>
+    <string name="favourites_empty">ფავორიტები ცარიელია</string>
 </resources>
 
 
