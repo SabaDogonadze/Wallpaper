@@ -1,11 +1,15 @@
 package com.example.wallpaperapp.presentation.setting
 
 
+import android.util.Log.d
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.wallpaperapp.databinding.FragmentSettingBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -25,6 +29,22 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 settingViewModel.clearSession()
                 delay(1500)
                 openLogInFragment()
+            }
+        }
+        binding.btnChangeLanguage.setOnClickListener {
+            observeLanguage()
+            settingViewModel.toggleLanguage()
+        }
+    }
+
+    private fun observeLanguage(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                settingViewModel.languageFlow.collect{language ->
+                    setLocale(requireContext(),language)
+                    d("shemovida","shemovida")
+                    requireActivity().recreate()
+                }
             }
         }
     }

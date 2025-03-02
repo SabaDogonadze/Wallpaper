@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_purple"
-    tools:context=".presentation.detail_fragment.DetailFragment">
+    tools:context=".presentation.detail.DetailFragment">
 
 
     <ProgressBar
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:background="@drawable/bg_buttons"
-        android:text="Set As"
+        android:text="@string/set_as"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

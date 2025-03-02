@@ -8,6 +8,19 @@
     <string name="login">login</string>
     <string name="dont_have_an_account">don\'t have an account?</string>
     <string name="language">ქართული</string>
+    <string name="swipe_to_delete">Swipe To delete</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="set_as_both">Set As Both</string>
+    <string name="set_as">Set As</string>
+    <string name="search">Search</string>
+    <string name="favourite_number">Favourite Number</string>
+    <string name="log_out">log out</string>
+    <string name="change_language">Change App Language</string>
+    <string name="discovery">Discovery</string>
+    <string name="collections">collections</string>
+    <string name="favourite">Favourite</string>
+    <string name="setting">Setting</string>
 </resources>
 
 

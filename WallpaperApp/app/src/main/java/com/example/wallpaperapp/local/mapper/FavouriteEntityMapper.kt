@@ -1,6 +1,5 @@
 package com.example.wallpaperapp.local.mapper
 
-import com.example.wallpaperapp.data.detail.DetailUnsplashURLDto
 import com.example.wallpaperapp.domain.detail.DetailImageModel
 import com.example.wallpaperapp.domain.detail.DetailUnsplashURL
 import com.example.wallpaperapp.local.entity.FavouriteEntity

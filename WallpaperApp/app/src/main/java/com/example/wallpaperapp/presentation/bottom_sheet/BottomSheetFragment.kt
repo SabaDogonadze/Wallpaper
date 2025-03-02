@@ -40,16 +40,16 @@ class BottomSheetFragment : BottomSheetDialogFragment(){
         bitmap?.let { bmp ->
             val wallpaperUtil = SetWallpaperUtil(requireContext(), bmp)    // If the bitmap is valid, an instance of SetWallpaperUtil is created with the current context and the bitmap.
 
-            binding.ivHome.setOnClickListener {
+            binding.tvHomeScreen.setOnClickListener {
                 d("homeScreen","dayenda wesit")
                 wallpaperUtil.setWallpaper(WallpaperTypes.HOME)
                 dismiss()  // dismisses the dialog
             }
-            binding.ivLock.setOnClickListener {
+            binding.tvLockScreen.setOnClickListener {
                 wallpaperUtil.setWallpaper(WallpaperTypes.LOCK)
                 dismiss()
             }
-            binding.ivBothHome.setOnClickListener {
+            binding.tvBothScreen.setOnClickListener {
                 wallpaperUtil.setWallpaper(WallpaperTypes.HOME_LOCK)
                 dismiss()
             }

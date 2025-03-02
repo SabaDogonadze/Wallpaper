@@ -44,7 +44,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRegisterRepository():RegisterRepository{
-        return  RegisterRepositoryImpl()
+        return RegisterRepositoryImpl()
     }
 
     @Singleton

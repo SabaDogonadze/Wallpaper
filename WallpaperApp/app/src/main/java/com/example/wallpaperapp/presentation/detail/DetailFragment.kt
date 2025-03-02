@@ -1,4 +1,4 @@
-package com.example.wallpaperapp.presentation.detail_fragment
+package com.example.wallpaperapp.presentation.detail
 
 import android.graphics.drawable.BitmapDrawable
 import android.view.View

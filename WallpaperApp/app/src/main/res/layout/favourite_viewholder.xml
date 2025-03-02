@@ -23,7 +23,7 @@
             android:id="@+id/tv_favourite_text"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Swipe To delete"
+            android:text="@string/swipe_to_delete"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/black"

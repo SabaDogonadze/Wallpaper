@@ -10,4 +10,17 @@
     <string name="login">შესვლა</string>
     <string name="dont_have_an_account">არ გაქვთ ანგარიში?</string>
     <string name="language">English</string>
+    <string name="swipe_to_delete">გადაუსვით რომ წაშალოთ</string>
+    <string name="home_screen">საწყისი ეკრანი</string>
+    <string name="lock_screen">ეკრანის დაბლოკვა</string>
+    <string name="set_as_both">საწყისი და დაბლოკილი</string>
+    <string name="set_as">დააყენე როგორც</string>
+    <string name="search">ძებნა</string>
+    <string name="favourite_number">ფავორიტების რაოდენობა</string>
+    <string name="log_out">გამოსვლა</string>
+    <string name="change_language">შეცვალე აპლიკაციის ენა</string>
+    <string name="discovery">აღმოაჩინე</string>
+    <string name="collections">კოლექციები</string>
+    <string name="favourite">ფავორიტები</string>
+    <string name="setting">პარამეტრები</string>
 </resources>

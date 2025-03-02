@@ -1,4 +1,4 @@
-package com.example.wallpaperapp.presentation.detail_fragment
+package com.example.wallpaperapp.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

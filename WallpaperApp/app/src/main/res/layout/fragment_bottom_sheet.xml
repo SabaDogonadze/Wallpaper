@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple"
+    android:background="@drawable/bg_bottom_sheet"
     tools:context=".presentation.bottom_sheet.BottomSheetFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <!--<androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,20 +16,21 @@
         android:src="@drawable/ic_home"
         app:layout_constraintEnd_toStartOf="@+id/tv_home_screen"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_home_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Screen"
+        android:layout_marginTop="30dp"
+        android:text="@string/home_screen"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_home"
-        app:layout_constraintStart_toEndOf="@id/iv_home"
-        app:layout_constraintTop_toTopOf="@+id/iv_home" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <!--<androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,49 +39,52 @@
         android:src="@drawable/ic_lock"
         app:layout_constraintEnd_toStartOf="@+id/tv_home_screen"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_home" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_home" />-->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_lock_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lock Screen"
+        android:layout_marginTop="15dp"
+        android:text="@string/lock_screen"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_lock"
-        app:layout_constraintStart_toEndOf="@id/iv_lock"
-        app:layout_constraintTop_toTopOf="@+id/iv_lock" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_both_lock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_lock"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_lock" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_screen" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_both_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_home"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_both_lock"
-        app:layout_constraintStart_toEndOf="@+id/iv_both_lock"
-        app:layout_constraintTop_toTopOf="@+id/iv_both_lock" />
+    <!--  <androidx.appcompat.widget.AppCompatImageView
+          android:id="@+id/iv_both_lock"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:layout_marginTop="20dp"
+          android:src="@drawable/ic_lock"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/iv_lock" />-->
 
+    <!--   <androidx.appcompat.widget.AppCompatImageView
+           android:id="@+id/iv_both_home"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_home"
+           app:layout_constraintBottom_toBottomOf="@+id/iv_both_lock"
+           app:layout_constraintStart_toEndOf="@+id/iv_both_lock"
+           app:layout_constraintTop_toTopOf="@+id/iv_both_lock" />
+   -->
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_both_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set As Both"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/set_as_both"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_both_home"
-        app:layout_constraintStart_toEndOf="@+id/iv_both_home"
-        app:layout_constraintTop_toTopOf="@+id/iv_both_home" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lock_screen" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
