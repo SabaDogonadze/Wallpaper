@@ -51,7 +51,7 @@ class FavouriteRecyclerAdapter : ListAdapter<DetailImageModel, RecyclerView.View
             binding.root.setOnClickListener {
                 onItemClicked?.invoke(item)
             }
-            Glide.with(binding.root.context).load(item.urls.imageUrl).circleCrop()
+            Glide.with(binding.root.context).load(item.urls.imageUrl)
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_foreground).into(binding.ivFavouriteImage)
         }

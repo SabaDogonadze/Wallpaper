@@ -1,6 +1,10 @@
 package com.example.wallpaperapp.presentation.detail
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -22,8 +26,19 @@ import java.util.jar.Pack200
 class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
     private val detailViewmodel: DetailViewModel by viewModels()
     override fun setUp() {
-        val id = DetailFragmentArgs.fromBundle(requireArguments()).imageId
-        detailViewmodel.getDetailImage(id)
+        val args = DetailFragmentArgs.fromBundle(requireArguments())
+        val id = args.imageId
+        val imageUrl = args.imageUrl
+
+        if (isNetworkAvailable(requireContext())) {
+            detailViewmodel.getDetailImage(id)  // API call to fetch additional details
+        } else {
+            // Offline: directly load the local image data
+            Glide.with(requireContext())
+                .load(imageUrl)
+                .into(binding.ivImage)
+        }
+
         detailViewmodel.checkIfFavorite(id)
         observers()
         clickListeners()
@@ -120,5 +135,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                 }
             }
         }
+    }
+
+    private fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 }

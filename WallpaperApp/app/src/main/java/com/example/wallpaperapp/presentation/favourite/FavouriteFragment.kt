@@ -3,6 +3,7 @@ package com.example.wallpaperapp.presentation.favourite
 import android.util.Log.d
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,16 +12,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FragmentFavouriteBinding
+import com.example.wallpaperapp.extensions.customize
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.util.SwipeAndDeleteCallback
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(FragmentFavouriteBinding::inflate) {
-    private val favouriteViewmodel:FavouriteViewModel by viewModels()
-    private lateinit var favouriteAdapter:FavouriteRecyclerAdapter
+class FavouriteFragment :
+    BaseFragment<FragmentFavouriteBinding>(FragmentFavouriteBinding::inflate) {
+    private val favouriteViewmodel: FavouriteViewModel by viewModels()
+    private lateinit var favouriteAdapter: FavouriteRecyclerAdapter
     override fun setUp() {
         swipeAndDelete()
         setUpRecycler()
@@ -29,17 +34,17 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(FragmentFavouri
     }
 
     override fun clickListeners() {
-       favouriteAdapter.setonItemClickedListener { image ->
-           openDetailsFragment(image.id,image.urls.imageUrl)
-       }
+        favouriteAdapter.setonItemClickedListener { image ->
+            openDetailsFragment(image.id, image.urls.imageUrl)
+        }
     }
 
-    private fun observer(){
+    private fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                favouriteViewmodel.favouriteImages.collect{ images ->
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                favouriteViewmodel.favouriteImages.collect { images ->
                     favouriteAdapter.submitList(images)
-                    d("favouriteRoomDataBase","${images}")
+                    d("favouriteRoomDataBase", "${images}")
                 }
             }
         }
@@ -47,11 +52,12 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(FragmentFavouri
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 favouriteViewmodel.favouriteImages.collect { images ->
                     if (images.isEmpty()) {
-                       // binding.recyclerview.visibility = View.GONE
+                        // binding.recyclerview.visibility = View.GONE
                         binding.tvFavouritesEmpty.visibility = View.VISIBLE
-                        Toast.makeText(requireContext(), "No favourites found!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "No favourites found!", Toast.LENGTH_SHORT)
+                            .show()
                     } else {
-                       // binding.recyclerview.visibility = View.VISIBLE
+                        // binding.recyclerview.visibility = View.VISIBLE
                         binding.tvFavouritesEmpty.visibility = View.GONE
                     }
                 }
@@ -59,23 +65,35 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(FragmentFavouri
         }
     }
 
-    private fun setUpRecycler(){
+    private fun setUpRecycler() {
         favouriteAdapter = FavouriteRecyclerAdapter()
         binding.recyclerview.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = favouriteAdapter
         }
     }
-    private fun openDetailsFragment(imageId:String,imageUrl:String){
-        findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(imageId, imageUrl))
+
+    private fun openDetailsFragment(imageId: String, imageUrl: String) {
+        findNavController().navigate(
+            FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(
+                imageId,
+                imageUrl
+            )
+        )
     }
 
-    private fun swipeAndDelete(){
+    private fun swipeAndDelete() {
         val swipeAndDelete = object : SwipeAndDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-               val position = viewHolder.absoluteAdapterPosition
+                val position = viewHolder.absoluteAdapterPosition
                 val itemToDelete = favouriteAdapter.currentList[position]
                 favouriteViewmodel.removeFavourite(itemToDelete)
+                Snackbar.make(requireView(), "Favourites item deleted!", Snackbar.LENGTH_LONG)
+                    .customize(
+                        ContextCompat.getColor(requireContext(), R.color.pink),
+                        ContextCompat.getColor(requireContext(), R.color.white)
+                    )
+                    .show()
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeAndDelete)

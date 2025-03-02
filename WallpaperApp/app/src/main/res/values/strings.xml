@@ -22,6 +22,7 @@
     <string name="favourite">Favourite</string>
     <string name="setting">Setting</string>
     <string name="favourites_empty">ფავორიტები ცარიელია</string>
+    <string name="user_email">მომხმარებლის ელ ფოსტა</string>
 </resources>
 
 

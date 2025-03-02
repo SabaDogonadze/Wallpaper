@@ -2,6 +2,8 @@ package com.example.wallpaperapp.presentation.setting
 
 
 import android.util.Log.d
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +22,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     private val settingViewModel: SettingViewModel by viewModels()
 
     override fun setUp() {
+        observers()
         clickListeners()
     }
 
@@ -34,6 +37,23 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         binding.btnChangeLanguage.setOnClickListener {
             observeLanguage()
             settingViewModel.toggleLanguage()
+        }
+    }
+
+    private fun observers(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                settingViewModel.favouriteImages.collect { images ->
+                    binding.tvFavouriteNumber.text = images.size.toString()
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                settingViewModel.emailFlow.collect { email ->
+                    binding.tvUserEmail.text = email
+                }
+            }
         }
     }
 
