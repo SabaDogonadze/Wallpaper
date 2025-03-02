@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.wallpaperapp.data.paging.discovery.DiscoveryRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.util.NetworkUtils

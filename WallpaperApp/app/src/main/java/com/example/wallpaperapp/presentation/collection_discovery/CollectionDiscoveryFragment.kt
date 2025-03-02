@@ -8,7 +8,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.wallpaperapp.data.paging.collection_discovery.CollectionDiscoveryRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentCollectionDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint

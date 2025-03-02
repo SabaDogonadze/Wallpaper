@@ -1,7 +1,7 @@
 package com.example.wallpaperapp.domain.favourite
 
 import com.example.wallpaperapp.domain.detail.DetailImageModel
-import com.example.wallpaperapp.local.entity.FavouriteEntity
+import com.example.wallpaperapp.data.local.entity.FavouriteEntity
 import kotlinx.coroutines.flow.Flow
 
 interface LocalFavouriteRepository {

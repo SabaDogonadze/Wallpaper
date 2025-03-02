@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FragmentFavouriteBinding
-import com.example.wallpaperapp.extensions.customize
+import com.example.wallpaperapp.util.extensions.customize
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.util.SwipeAndDeleteCallback
 import com.google.android.material.snackbar.Snackbar

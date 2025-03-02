@@ -2,7 +2,7 @@ package com.example.wallpaperapp.presentation.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wallpaperapp.data.datastore.SessionTracker
+import com.example.wallpaperapp.data.remote.datastore.SessionTracker
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
 import com.example.wallpaperapp.domain.detail.DetailImageModel
 import com.example.wallpaperapp.domain.favourite.LocalFavouriteRepository

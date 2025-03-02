@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.wallpaperapp.data.common.Resource
-import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
+import com.example.wallpaperapp.data.remote.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

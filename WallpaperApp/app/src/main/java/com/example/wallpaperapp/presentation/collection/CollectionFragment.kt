@@ -13,14 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.R
-import com.example.wallpaperapp.data.paging.collection.CollectionRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentCollectionBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
-import com.example.wallpaperapp.presentation.discovery.DiscoveryFragmentDirections
 import com.example.wallpaperapp.util.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.jar.Pack200.Packer.PASS
 
 @AndroidEntryPoint
 class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentCollectionBinding::inflate) {

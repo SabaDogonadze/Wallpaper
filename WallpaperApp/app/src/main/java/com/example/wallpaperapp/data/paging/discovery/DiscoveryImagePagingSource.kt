@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.wallpaperapp.BuildConfig
-import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
-import com.example.wallpaperapp.data.discovery.DiscoveryService
+import com.example.wallpaperapp.data.remote.discovery.DiscoveryImageResponse
+import com.example.wallpaperapp.data.remote.discovery.DiscoveryService
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject

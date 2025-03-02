@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.wallpaperapp.BuildConfig
-import com.example.wallpaperapp.data.collection.CollectionModelDto
-import com.example.wallpaperapp.data.collection.CollectionService
+import com.example.wallpaperapp.data.remote.collection.CollectionModelDto
+import com.example.wallpaperapp.data.remote.collection.CollectionService
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject

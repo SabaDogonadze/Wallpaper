@@ -2,8 +2,8 @@ package com.example.wallpaperapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.wallpaperapp.local.dao.FavouriteDao
-import com.example.wallpaperapp.local.database.AppDataBase
+import com.example.wallpaperapp.data.local.dao.FavouriteDao
+import com.example.wallpaperapp.data.local.database.AppDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideAppDataBase(@ApplicationContext context: Context):AppDataBase{
+    fun provideAppDataBase(@ApplicationContext context: Context): AppDataBase {
         return Room.databaseBuilder(
             context,
             AppDataBase::class.java,"wallpaper-database"
@@ -26,7 +26,7 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideFavouriteDao(appDataBase: AppDataBase):FavouriteDao{
+    fun provideFavouriteDao(appDataBase: AppDataBase): FavouriteDao {
         return appDataBase.favouriteDao()
     }
 }

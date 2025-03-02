@@ -1,13 +1,13 @@
 package com.example.wallpaperapp.di
 
 import com.example.wallpaperapp.BuildConfig
-import com.example.wallpaperapp.data.collection.CollectionSearchService
-import com.example.wallpaperapp.data.collection.CollectionService
-import com.example.wallpaperapp.data.collection_discovery.CollectionDiscoveryService
+import com.example.wallpaperapp.data.remote.collection.CollectionSearchService
+import com.example.wallpaperapp.data.remote.collection.CollectionService
+import com.example.wallpaperapp.data.remote.collection_discovery.CollectionDiscoveryService
 import com.example.wallpaperapp.data.detail.DetailService
-import com.example.wallpaperapp.data.discovery.DiscoveryImageResponse
-import com.example.wallpaperapp.data.discovery.DiscoveryService
-import com.example.wallpaperapp.data.discovery.search.SearchService
+import com.example.wallpaperapp.data.remote.discovery.DiscoveryImageResponse
+import com.example.wallpaperapp.data.remote.discovery.DiscoveryService
+import com.example.wallpaperapp.data.remote.discovery.search.SearchService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

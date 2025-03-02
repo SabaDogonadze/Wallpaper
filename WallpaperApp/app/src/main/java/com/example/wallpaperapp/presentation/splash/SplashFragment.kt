@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.wallpaperapp.data.datastore.SessionTracker
+import com.example.wallpaperapp.data.remote.datastore.SessionTracker
 import com.example.wallpaperapp.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -46,7 +46,7 @@ class SplashFragment : Fragment() {
     private fun observers(){
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
-                SessionTracker.userSession.collect{session ->
+                SessionTracker.userSession.collect{ session ->
                     d("SaveSession","$session")
                     delay(3000)
                     openFragment(session)

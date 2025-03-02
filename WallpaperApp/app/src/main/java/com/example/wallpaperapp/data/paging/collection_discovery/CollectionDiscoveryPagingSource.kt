@@ -5,15 +5,15 @@ import androidx.paging.LoadState
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.wallpaperapp.BuildConfig
-import com.example.wallpaperapp.data.collection.CollectionModelDto
-import com.example.wallpaperapp.data.collection.CollectionService
-import com.example.wallpaperapp.data.collection_discovery.CollectionDiscoveryImageDto
-import com.example.wallpaperapp.data.collection_discovery.CollectionDiscoveryService
+import com.example.wallpaperapp.data.remote.collection.CollectionModelDto
+import com.example.wallpaperapp.data.remote.collection.CollectionService
+import com.example.wallpaperapp.data.remote.collection_discovery.CollectionDiscoveryImageDto
+import com.example.wallpaperapp.data.remote.collection_discovery.CollectionDiscoveryService
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class CollectionDiscoveryPagingSource @Inject constructor(private val collectionDiscoveryService: CollectionDiscoveryService,private val id:String) :
+class CollectionDiscoveryPagingSource @Inject constructor(private val collectionDiscoveryService: CollectionDiscoveryService, private val id:String) :
     PagingSource<Int, CollectionDiscoveryImageDto>() {
 
     override fun getRefreshKey(state: PagingState<Int, CollectionDiscoveryImageDto>): Int? {
