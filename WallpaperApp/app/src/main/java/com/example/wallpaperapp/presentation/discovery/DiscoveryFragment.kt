@@ -32,7 +32,7 @@ class DiscoveryFragment :
 
     override fun clickListeners() {
         adapter.setonItemClickedListener { item ->
-            val action = DiscoveryFragmentDirections.actionDiscoveryFragmentToDetailFragment(item.id)
+            val action = DiscoveryFragmentDirections.actionDiscoveryFragmentToDetailFragment(item.id,item.urls.imageUrl)
             findNavController().navigate(action)
         }
     }

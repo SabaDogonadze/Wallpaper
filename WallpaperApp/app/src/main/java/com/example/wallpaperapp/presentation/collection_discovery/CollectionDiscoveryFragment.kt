@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.data.paging.collection_discovery.CollectionDiscoveryRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentCollectionDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
-import com.example.wallpaperapp.presentation.discovery.DiscoveryFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.jar.Pack200.Packer.PASS
 
 @AndroidEntryPoint
 class CollectionDiscoveryFragment : BaseFragment<FragmentCollectionDiscoveryBinding>(FragmentCollectionDiscoveryBinding::inflate) {
@@ -31,7 +29,7 @@ class CollectionDiscoveryFragment : BaseFragment<FragmentCollectionDiscoveryBind
 
     override fun clickListeners() {
         collectionDiscoveryAdapter.setonItemClickedListener { item ->
-            val action = CollectionDiscoveryFragmentDirections.actionCollectionDiscoveryFragmentToDetailFragment(item.id)
+            val action = CollectionDiscoveryFragmentDirections.actionCollectionDiscoveryFragmentToDetailFragment(item.id,item.urls.imageUrl)
             findNavController().navigate(action)
         }
     }

@@ -10,6 +10,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentDetailBinding
+import com.example.wallpaperapp.domain.detail.DetailImageModel
+import com.example.wallpaperapp.domain.detail.DetailUnsplashURL
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.bottom_sheet.BottomSheetFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,20 +24,40 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     override fun setUp() {
         val id = DetailFragmentArgs.fromBundle(requireArguments()).imageId
         detailViewmodel.getDetailImage(id)
+        detailViewmodel.checkIfFavorite(id)
         observers()
         clickListeners()
     }
 
     override fun clickListeners() {
         binding.ivFavourite.setOnClickListener {
+            val id = DetailFragmentArgs.fromBundle(requireArguments()).imageId
+            val imageUrl = DetailFragmentArgs.fromBundle(requireArguments()).imageUrl
             it.isSelected = !it.isSelected
             if (it.isSelected) {
-                Toast.makeText(requireContext(), "Add To Favourites", Toast.LENGTH_SHORT).show()
+                detailViewmodel.addFavourite(
+                    DetailImageModel(
+                        id = id,
+                        width = 0,
+                        height = 0,
+                        urls = DetailUnsplashURL(imageUrl = imageUrl)
+                    )
+                )
+                Toast.makeText(requireContext(), "Added To Favourites", Toast.LENGTH_SHORT).show()
             } else {
+                detailViewmodel.removeFavourite(
+                    DetailImageModel(
+                        id = id,
+                        width = 0,
+                        height = 0,
+                        urls = DetailUnsplashURL(imageUrl = imageUrl)
+                    )
+                )
                 Toast.makeText(requireContext(), "Removed From The Favourites", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
 
 
         /* so manually creating a instance of BottomSheetFragment, retrieve a image and then checking if this image is BitmapDrawable
@@ -72,6 +94,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                                 .load(it.dataSuccess?.urls?.imageUrl)
                                 .into(binding.ivImage)
                         }
+
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(
@@ -80,11 +103,20 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                                 Toast.LENGTH_LONG
                             ).show()
                         }
+
                         is Resource.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                         }
+
                         null -> Pack200.Packer.PASS
                     }
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                detailViewmodel.isFavorite.collect { isFav ->
+                    binding.ivFavourite.isSelected = isFav // Update UI based on favorite status
                 }
             }
         }

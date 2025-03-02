@@ -13,6 +13,7 @@ import com.example.wallpaperapp.data.detail.DetailService
 import com.example.wallpaperapp.data.discovery.DiscoveryRepositoryImpl
 import com.example.wallpaperapp.data.discovery.DiscoveryService
 import com.example.wallpaperapp.data.discovery.search.SearchService
+import com.example.wallpaperapp.data.favourite.LocalFavouriteRepositoryImpl
 import com.example.wallpaperapp.data.login.LogInRepositoryImpl
 import com.example.wallpaperapp.data.register.RegisterRepositoryImpl
 import com.example.wallpaperapp.domain.collection.CollectionRepository
@@ -20,8 +21,10 @@ import com.example.wallpaperapp.domain.collection_discovery.CollectionDiscoveryR
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
 import com.example.wallpaperapp.domain.detail.DetailRepository
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
+import com.example.wallpaperapp.domain.favourite.LocalFavouriteRepository
 import com.example.wallpaperapp.domain.login.LoginRepository
 import com.example.wallpaperapp.domain.register.RegisterRepository
+import com.example.wallpaperapp.local.dao.FavouriteDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,6 +74,12 @@ object RepositoryModule {
     @Provides
     fun provideCollectionDiscoveryRepository(collectionDiscoveryService: CollectionDiscoveryService): CollectionDiscoveryRepository {
         return CollectionDiscoveryRepositoryImpl(collectionDiscoveryService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLocalFavouriteRepository(favouriteDao: FavouriteDao): LocalFavouriteRepository {
+        return LocalFavouriteRepositoryImpl(favouriteDao)
     }
 
 }
