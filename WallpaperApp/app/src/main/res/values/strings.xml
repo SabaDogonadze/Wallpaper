@@ -23,6 +23,7 @@
     <string name="setting">Setting</string>
     <string name="favourites_empty">ფავორიტები ცარიელია</string>
     <string name="user_email">მომხმარებლის ელ ფოსტა</string>
+    <string name="no_internet_connection">No internet connection</string>
 </resources>
 
 

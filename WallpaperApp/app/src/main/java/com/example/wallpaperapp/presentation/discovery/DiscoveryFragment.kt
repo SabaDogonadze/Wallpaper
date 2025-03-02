@@ -2,6 +2,7 @@ package com.example.wallpaperapp.presentation.discovery
 
 import android.graphics.Color
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.data.paging.discovery.DiscoveryRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.util.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,6 +25,7 @@ class DiscoveryFragment :
     private lateinit var adapter: DiscoveryRecyclerAdapter
 
     override fun setUp() {
+        checkNetworkStatus()
         setUpSearchBarColors()
         bindObservers()
         setUpRecycler()
@@ -100,6 +103,15 @@ class DiscoveryFragment :
             binding.searchBar.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         searchEditText.setTextColor(Color.WHITE)
         searchEditText.setHintTextColor(Color.WHITE)
+    }
+
+    private fun checkNetworkStatus() {
+        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
+            binding.tvNetwork.visibility = View.VISIBLE
+            binding.tvNetwork.text = "No internet connection"
+        } else {
+            binding.tvNetwork.visibility = View.GONE
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.wallpaperapp.presentation.collection
 import android.graphics.Color
 import android.util.Log
 import android.util.Log.d
+import android.view.View
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -11,10 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.paging.collection.CollectionRecyclerAdapter
 import com.example.wallpaperapp.databinding.FragmentCollectionBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.discovery.DiscoveryFragmentDirections
+import com.example.wallpaperapp.util.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200.Packer.PASS
@@ -25,6 +28,7 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
     private val collectionViewModel: CollectionViewModel by viewModels()
 
     override fun setUp() {
+        checkNetworkStatus()
         setUpSearchBarColors()
         bindObservers()
         setUpRecycler()
@@ -87,6 +91,15 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
             binding.searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         searchEditText.setTextColor(Color.WHITE)
         searchEditText.setHintTextColor(Color.WHITE)
+    }
+
+    private fun checkNetworkStatus() {
+        if (!NetworkUtils.isNetworkAvailable(requireContext())) {
+            binding.tvNetwork.visibility = View.VISIBLE
+            binding.tvNetwork.text = getString(R.string.no_internet_connection)
+        } else {
+            binding.tvNetwork.visibility = View.GONE
+        }
     }
 
 }

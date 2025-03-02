@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/dark_purple"
     android:layout_height="match_parent"
+    android:background="@color/dark_purple"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".presentation.discovery.DiscoveryFragment">
 
-   <ProgressBar
-       android:id="@+id/progress_bar"
-       android:layout_width="50dp"
-       android:layout_height="50dp"
-       android:layout_marginTop="50dp"
-       android:indeterminateTint="@color/white"
-       android:visibility="gone"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:indeterminateTint="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-   <androidx.appcompat.widget.SearchView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/search_bar"
-      android:hint="@string/search"/>
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search" />
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/recycler_view"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
