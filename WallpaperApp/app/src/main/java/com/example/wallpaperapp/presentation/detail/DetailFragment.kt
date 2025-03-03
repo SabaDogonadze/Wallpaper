@@ -7,12 +7,14 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.wallpaperapp.R
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentDetailBinding
 import com.example.wallpaperapp.domain.detail.DetailImageModel
@@ -20,6 +22,8 @@ import com.example.wallpaperapp.domain.detail.DetailUnsplashURL
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.bottom_sheet.BottomSheetFragment
 import com.example.wallpaperapp.presentation.common.ResourceUi
+import com.example.wallpaperapp.util.extensions.customize
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200
@@ -60,7 +64,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                         urls = DetailUnsplashUiURL(imageUrl = imageUrl)
                     )
                 )
-                Toast.makeText(requireContext(), "Added To Favourites", Toast.LENGTH_SHORT).show()
+                Snackbar.make(requireView(),
+                    getString(R.string.added_to_favourites), Snackbar.LENGTH_LONG)
+                    .customize(
+                        ContextCompat.getColor(requireContext(), R.color.green),
+                        ContextCompat.getColor(requireContext(), R.color.white)
+                    )
+                    .show()
             } else {
                 detailViewmodel.removeFavourite(
                     DetailImageUi(
@@ -70,7 +80,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                         urls = DetailUnsplashUiURL(imageUrl = imageUrl)
                     )
                 )
-                Toast.makeText(requireContext(), "Removed From The Favourites", Toast.LENGTH_SHORT)
+                Snackbar.make(requireView(),
+                    getString(R.string.removed_from_the_favourites), Snackbar.LENGTH_LONG)
+                    .customize(
+                        ContextCompat.getColor(requireContext(), R.color.red),
+                        ContextCompat.getColor(requireContext(), R.color.white)
+                    )
                     .show()
             }
         }

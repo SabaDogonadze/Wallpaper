@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.util.NetworkUtils
@@ -107,7 +108,7 @@ class DiscoveryFragment :
     private fun checkNetworkStatus() {
         if (!NetworkUtils.isNetworkAvailable(requireContext())) {
             binding.tvNetwork.visibility = View.VISIBLE
-            binding.tvNetwork.text = "No internet connection"
+            binding.tvNetwork.text = requireContext().getString(R.string.no_internet_connection)
         } else {
             binding.tvNetwork.visibility = View.GONE
         }

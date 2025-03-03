@@ -23,4 +23,10 @@
     <string name="collections">კოლექციები</string>
     <string name="favourite">ფავორიტები</string>
     <string name="setting">პარამეტრები</string>
+    <string name="favourites_empty">ფავორიტები ცარიელია</string>
+    <string name="user_email">მომხმარებლის ელ ფოსტა</string>
+    <string name="no_internet_connection">არ არის ინტერნეტთან კავშირი</string>
+    <string name="favourites_item_deleted">ფავორიტი ფოტო წაიშალა!</string>
+    <string name="added_to_favourites">ფავორიტებში დაემატა</string>
+    <string name="removed_from_the_favourites">წაიშალა ფავორიტებიდან</string>
 </resources>

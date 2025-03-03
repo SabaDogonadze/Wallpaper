@@ -56,5 +56,4 @@ class CollectionDiscoveryFragment : BaseFragment<FragmentCollectionDiscoveryBind
         }
     }
 
-
 }

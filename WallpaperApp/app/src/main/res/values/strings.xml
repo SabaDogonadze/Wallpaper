@@ -21,9 +21,12 @@
     <string name="collections">collections</string>
     <string name="favourite">Favourite</string>
     <string name="setting">Setting</string>
-    <string name="favourites_empty">ფავორიტები ცარიელია</string>
-    <string name="user_email">მომხმარებლის ელ ფოსტა</string>
+    <string name="favourites_empty">Favourites Are Empty</string>
+    <string name="user_email">User Email</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="favourites_item_deleted">Favourites item deleted!</string>
+    <string name="added_to_favourites">Added To Favourites</string>
+    <string name="removed_from_the_favourites">Removed From The Favourites</string>
 </resources>
 
 

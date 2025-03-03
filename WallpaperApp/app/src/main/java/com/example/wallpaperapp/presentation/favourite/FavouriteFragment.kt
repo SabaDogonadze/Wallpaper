@@ -54,8 +54,6 @@ class FavouriteFragment :
                     if (images.isEmpty()) {
                         // binding.recyclerview.visibility = View.GONE
                         binding.tvFavouritesEmpty.visibility = View.VISIBLE
-                        Toast.makeText(requireContext(), "No favourites found!", Toast.LENGTH_SHORT)
-                            .show()
                     } else {
                         // binding.recyclerview.visibility = View.VISIBLE
                         binding.tvFavouritesEmpty.visibility = View.GONE
@@ -88,9 +86,10 @@ class FavouriteFragment :
                 val position = viewHolder.absoluteAdapterPosition
                 val itemToDelete = favouriteAdapter.currentList[position]
                 favouriteViewmodel.removeFavourite(itemToDelete)
-                Snackbar.make(requireView(), "Favourites item deleted!", Snackbar.LENGTH_LONG)
+                Snackbar.make(requireView(),
+                    getString(R.string.favourites_item_deleted), Snackbar.LENGTH_LONG)
                     .customize(
-                        ContextCompat.getColor(requireContext(), R.color.pink),
+                        ContextCompat.getColor(requireContext(), R.color.red),
                         ContextCompat.getColor(requireContext(), R.color.white)
                     )
                     .show()
