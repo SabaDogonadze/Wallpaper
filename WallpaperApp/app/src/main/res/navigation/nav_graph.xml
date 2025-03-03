@@ -76,6 +76,12 @@
         <argument
             android:name="image_url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_discoveryFragment"
+            app:destination="@id/discoveryFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_collectionDiscoveryFragment"
+            app:destination="@id/collectionDiscoveryFragment" />
     </fragment>
 
     <dialog
@@ -107,5 +113,8 @@
         <action
             android:id="@+id/action_collectionDiscoveryFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_collectionDiscoveryFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
     </fragment>
 </navigation>

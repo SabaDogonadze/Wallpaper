@@ -31,6 +31,9 @@ class CollectionDiscoveryFragment : BaseFragment<FragmentCollectionDiscoveryBind
             val action = CollectionDiscoveryFragmentDirections.actionCollectionDiscoveryFragmentToDetailFragment(item.id,item.urls.imageUrl)
             findNavController().navigate(action)
         }
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun observers() {
