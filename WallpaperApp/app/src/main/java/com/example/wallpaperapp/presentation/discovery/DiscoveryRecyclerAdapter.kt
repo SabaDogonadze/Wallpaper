@@ -10,12 +10,12 @@ import com.bumptech.glide.Glide
 import com.example.wallpaperapp.databinding.DiscoveryImageViewholderBinding
 import com.example.wallpaperapp.domain.discovery.DiscoveryImageModel
 
-class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<DiscoveryImageModel>() {
-    override fun areItemsTheSame(oldItem: DiscoveryImageModel, newItem: DiscoveryImageModel): Boolean {
+class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageUi, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<DiscoveryImageUi>() {
+    override fun areItemsTheSame(oldItem: DiscoveryImageUi, newItem: DiscoveryImageUi): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: DiscoveryImageModel, newItem: DiscoveryImageModel): Boolean {
+    override fun areContentsTheSame(oldItem: DiscoveryImageUi, newItem: DiscoveryImageUi): Boolean {
         return oldItem == newItem
     }
 
@@ -26,9 +26,9 @@ class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerV
 
         }
     }
-    private var onItemClicked: ((DiscoveryImageModel) -> Unit)? = null
+    private var onItemClicked: ((DiscoveryImageUi) -> Unit)? = null
 
-    fun setonItemClickedListener(listener: (DiscoveryImageModel) -> Unit) {
+    fun setonItemClickedListener(listener: (DiscoveryImageUi) -> Unit) {
         onItemClicked = listener
     }
 
@@ -43,7 +43,7 @@ class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageModel, RecyclerV
 
     inner class UserDataViewHolder(private val binding: DiscoveryImageViewholderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(image: DiscoveryImageModel) {
+        fun bind(image: DiscoveryImageUi) {
             binding.apply {
                 d("SearchView","Shemovida image")
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivDiscoveryImage)

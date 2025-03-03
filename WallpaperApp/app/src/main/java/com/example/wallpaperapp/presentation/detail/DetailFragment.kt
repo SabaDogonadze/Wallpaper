@@ -52,21 +52,21 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             it.isSelected = !it.isSelected
             if (it.isSelected) {
                 detailViewmodel.addFavourite(
-                    DetailImageModel(
+                    DetailImageUi(
                         id = id,
                         width = 0,
                         height = 0,
-                        urls = DetailUnsplashURL(imageUrl = imageUrl)
+                        urls = DetailUnsplashUiURL(imageUrl = imageUrl)
                     )
                 )
                 Toast.makeText(requireContext(), "Added To Favourites", Toast.LENGTH_SHORT).show()
             } else {
                 detailViewmodel.removeFavourite(
-                    DetailImageModel(
+                    DetailImageUi(
                         id = id,
                         width = 0,
                         height = 0,
-                        urls = DetailUnsplashURL(imageUrl = imageUrl)
+                        urls = DetailUnsplashUiURL(imageUrl = imageUrl)
                     )
                 )
                 Toast.makeText(requireContext(), "Removed From The Favourites", Toast.LENGTH_SHORT)

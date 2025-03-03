@@ -10,12 +10,12 @@ import com.bumptech.glide.Glide
 import com.example.wallpaperapp.databinding.CollectionItemViewholderBinding
 import com.example.wallpaperapp.domain.collection.CollectionModel
 
-class CollectionRecyclerAdapter : PagingDataAdapter<CollectionModel, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<CollectionModel>() {
-    override fun areItemsTheSame(oldItem: CollectionModel, newItem: CollectionModel): Boolean {
+class CollectionRecyclerAdapter : PagingDataAdapter<CollectionUi, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<CollectionUi>() {
+    override fun areItemsTheSame(oldItem: CollectionUi, newItem: CollectionUi): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: CollectionModel, newItem: CollectionModel): Boolean {
+    override fun areContentsTheSame(oldItem: CollectionUi, newItem: CollectionUi): Boolean {
         return oldItem == newItem
     }
 
@@ -26,9 +26,9 @@ class CollectionRecyclerAdapter : PagingDataAdapter<CollectionModel, RecyclerVie
 
         }
     }
-    private var onItemClicked: ((CollectionModel) -> Unit)? = null
+    private var onItemClicked: ((CollectionUi) -> Unit)? = null
 
-    fun setonItemClickedListener(listener: (CollectionModel) -> Unit) {
+    fun setonItemClickedListener(listener: (CollectionUi) -> Unit) {
         onItemClicked = listener
     }
 
@@ -43,7 +43,7 @@ class CollectionRecyclerAdapter : PagingDataAdapter<CollectionModel, RecyclerVie
 
     inner class CollectionViewHolder(private val binding: CollectionItemViewholderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(image: CollectionModel) {
+        fun bind(image: CollectionUi) {
             binding.apply {
                 d("SearchView","Shemovida image")
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivCollectionImage)

@@ -3,6 +3,7 @@ package com.example.wallpaperapp.presentation.discovery
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import androidx.paging.map
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.data.remote.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
@@ -10,14 +11,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class DiscoveryViewModel @Inject constructor(private val discoveryRepository: DiscoveryRepository) :
     ViewModel() {
 
-    private val _discoveryImageResponseFlow = MutableStateFlow<Resource<DiscoveryImageResponse>?>(null)
-    val discoveryImageResponseFlow: StateFlow<Resource<DiscoveryImageResponse>?> = _discoveryImageResponseFlow
+    private val _discoveryImageResponseFlow = MutableStateFlow<Resource<DiscoveryImageUi>?>(null)
+    val discoveryImageResponseFlow: StateFlow<Resource<DiscoveryImageUi>?> = _discoveryImageResponseFlow
 
     private val _searchQuery = MutableStateFlow<String?>(null)
     val searchQuery: StateFlow<String?> = _searchQuery
@@ -55,6 +57,11 @@ class DiscoveryViewModel @Inject constructor(private val discoveryRepository: Di
             } else {
                 // Otherwise, return search results for the query
                 discoveryRepository.getDiscoverySearchImage(query)
+            }
+        }.map { resource ->
+            // Assuming your Resource type has a map function that applies the transformation
+            resource.map { discoveryImage ->
+                discoveryImage.toPresenter()
             }
         }
         .cachedIn(viewModelScope)

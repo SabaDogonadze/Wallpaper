@@ -3,6 +3,7 @@ package com.example.wallpaperapp.presentation.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wallpaperapp.data.common.Resource
+import com.example.wallpaperapp.data.local.mapper.toData
 import com.example.wallpaperapp.domain.detail.DetailImageModel
 import com.example.wallpaperapp.domain.detail.DetailRepository
 import com.example.wallpaperapp.domain.favourite.LocalFavouriteRepository
@@ -18,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository,private val favouriteRepository: LocalFavouriteRepository):ViewModel() {
 
-    private val _detailImageResponseFlow = MutableStateFlow<ResourceUi<DetailImageModel>?>(null)
-    val detailImageResponseFlow: StateFlow<ResourceUi<DetailImageModel>?> = _detailImageResponseFlow
+    private val _detailImageResponseFlow = MutableStateFlow<ResourceUi<DetailImageUi>?>(null)
+    val detailImageResponseFlow: StateFlow<ResourceUi<DetailImageUi>?> = _detailImageResponseFlow
 
     private val _isFavorite = MutableStateFlow(false)
     val isFavorite: StateFlow<Boolean> = _isFavorite
@@ -34,16 +35,16 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
         }
     }
 
-    fun addFavourite(image: DetailImageModel) {
+    fun addFavourite(image: DetailImageUi) {
         viewModelScope.launch {
-            favouriteRepository.insert(image)
+            favouriteRepository.insert(image.toDomain())
             _isFavorite.value = true
         }
     }
 
-    fun removeFavourite(image: DetailImageModel) {
+    fun removeFavourite(image: DetailImageUi) {
         viewModelScope.launch {
-            favouriteRepository.delete(image)
+            favouriteRepository.delete(image.toDomain())
             _isFavorite.value = false
         }
     }
@@ -56,7 +57,7 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
                         _detailImageResponseFlow.value = ResourceUi.Loading(it.loading)
                     }
                     is Resource.Success -> {
-                        _detailImageResponseFlow.value = ResourceUi.Success(dataSuccess = it.dataSuccess!!)
+                        _detailImageResponseFlow.value = ResourceUi.Success(dataSuccess = it.dataSuccess!!.toPresenter())
                     }
                     is Resource.Error -> {
                         _detailImageResponseFlow.value = ResourceUi.Error(it.errorMessage)

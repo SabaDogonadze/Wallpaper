@@ -8,28 +8,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FavouriteViewholderBinding
-import com.example.wallpaperapp.domain.detail.DetailImageModel
+import com.example.wallpaperapp.presentation.detail.DetailImageUi
 
-class FavouriteRecyclerAdapter : ListAdapter<DetailImageModel, RecyclerView.ViewHolder>(
-    object : DiffUtil.ItemCallback<DetailImageModel>() {
+class FavouriteRecyclerAdapter : ListAdapter<DetailImageUi, RecyclerView.ViewHolder>(
+    object : DiffUtil.ItemCallback<DetailImageUi>() {
         override fun areItemsTheSame(
-            oldItem: DetailImageModel,
-            newItem: DetailImageModel,
+            oldItem: DetailImageUi,
+            newItem: DetailImageUi,
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: DetailImageModel,
-            newItem: DetailImageModel,
+            oldItem: DetailImageUi,
+            newItem: DetailImageUi,
         ): Boolean {
             return oldItem == newItem
         }
     }
 ) {
-    private var onItemClicked: ((DetailImageModel) -> Unit)? = null
+    private var onItemClicked: ((DetailImageUi) -> Unit)? = null
 
-    fun setonItemClickedListener(listener: (DetailImageModel) -> Unit) {
+    fun setonItemClickedListener(listener: (DetailImageUi) -> Unit) {
         onItemClicked = listener
     }
 
@@ -47,7 +47,7 @@ class FavouriteRecyclerAdapter : ListAdapter<DetailImageModel, RecyclerView.View
 
     inner class FavouriteViewHolder(private val binding: FavouriteViewholderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DetailImageModel) {
+        fun bind(item: DetailImageUi) {
             binding.root.setOnClickListener {
                 onItemClicked?.invoke(item)
             }

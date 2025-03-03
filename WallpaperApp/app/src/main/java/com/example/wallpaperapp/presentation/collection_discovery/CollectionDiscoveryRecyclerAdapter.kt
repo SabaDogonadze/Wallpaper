@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wallpaperapp.databinding.CollectionDiscoveryViewholderBinding
-import com.example.wallpaperapp.domain.collection_discovery.CollectionDiscoveryImage
 
-class CollectionDiscoveryRecyclerAdapter: PagingDataAdapter<CollectionDiscoveryImage, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<CollectionDiscoveryImage>() {
-    override fun areItemsTheSame(oldItem: CollectionDiscoveryImage, newItem: CollectionDiscoveryImage): Boolean {
+class CollectionDiscoveryRecyclerAdapter: PagingDataAdapter<CollectionDiscoveryImageUi, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<CollectionDiscoveryImageUi>() {
+    override fun areItemsTheSame(oldItem: CollectionDiscoveryImageUi, newItem: CollectionDiscoveryImageUi): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: CollectionDiscoveryImage, newItem: CollectionDiscoveryImage): Boolean {
+    override fun areContentsTheSame(oldItem: CollectionDiscoveryImageUi, newItem: CollectionDiscoveryImageUi): Boolean {
         return oldItem == newItem
     }
 
@@ -25,9 +24,9 @@ class CollectionDiscoveryRecyclerAdapter: PagingDataAdapter<CollectionDiscoveryI
 
         }
     }
-    private var onItemClicked: ((CollectionDiscoveryImage) -> Unit)? = null
+    private var onItemClicked: ((CollectionDiscoveryImageUi) -> Unit)? = null
 
-    fun setonItemClickedListener(listener: (CollectionDiscoveryImage) -> Unit) {
+    fun setonItemClickedListener(listener: (CollectionDiscoveryImageUi) -> Unit) {
         onItemClicked = listener
     }
 
@@ -42,7 +41,7 @@ class CollectionDiscoveryRecyclerAdapter: PagingDataAdapter<CollectionDiscoveryI
 
     inner class CollectionDiscoveryViewHolder(private val binding: CollectionDiscoveryViewholderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(image: CollectionDiscoveryImage) {
+        fun bind(image: CollectionDiscoveryImageUi) {
             binding.apply {
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivCollectionDiscoveryImage)
                 root.setOnClickListener {
