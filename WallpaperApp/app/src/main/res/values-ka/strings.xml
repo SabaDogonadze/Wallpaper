@@ -29,4 +29,13 @@
     <string name="favourites_item_deleted">ფავორიტი ფოტო წაიშალა!</string>
     <string name="added_to_favourites">ფავორიტებში დაემატა</string>
     <string name="removed_from_the_favourites">წაიშალა ფავორიტებიდან</string>
+    <string name="email_cannot_be_empty">ელ ფოსტის ველი არ შეიძლება იყოს ცარიელი</string>
+    <string name="invalid_email_format">ელ ფოსტის არასწორი ფორმატი</string>
+    <string name="passwords_are_not_the_same">პაროლები ერთმანეთს არ ემთხვევა</string>
+    <string name="password_cannot_be_empty">პაროლის ველი არ შეიძლება იყოს ცარიელი</string>
+    <string name="password_must_be_at_least_5_characters_long">პაროლი სიგრძე უნდა იყოს 5 სიმბოლოზე მეტი</string>
+    <string name="no_account_found_with_this_email">კონკრეტულ ელ ფოსტის მისამართზე მომხმარებელი ვერ მოიძებნა</string>
+    <string name="incorrect_password_please_try_again">არასწორი პაროლი.გთხოვთ სცადოთ თავიდან</string>
+    <string name="network_error_please_check_your_internet_connection">გთხოვთ შეამოწმოთ ინტერნეტთან კავშირი</string>
+    <string name="unknown_error">წარმოიშვა უცნობი პრობლემა</string>
 </resources>
