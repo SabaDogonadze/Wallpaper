@@ -58,7 +58,7 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
                         }
                         is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
+                            it.error?.let { Toast.makeText(context, getString(it.toInt()), Toast.LENGTH_LONG).show()}
                         }
                         is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE

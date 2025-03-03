@@ -27,6 +27,15 @@
     <string name="favourites_item_deleted">Favourites item deleted!</string>
     <string name="added_to_favourites">Added To Favourites</string>
     <string name="removed_from_the_favourites">Removed From The Favourites</string>
+    <string name="email_cannot_be_empty">Email cannot be empty</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="passwords_are_not_the_same">Passwords Are Not The Same</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="password_must_be_at_least_5_characters_long">Password must be at least 5 characters long</string>
+    <string name="no_account_found_with_this_email">No account found with this email.</string>
+    <string name="incorrect_password_please_try_again">Incorrect password. Please try again.</string>
+    <string name="network_error_please_check_your_internet_connection">Network error. Please check your internet connection.</string>
+    <string name="unknown_error">Unknown Error</string>
 </resources>
 
 

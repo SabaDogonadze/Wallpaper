@@ -32,7 +32,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             val validationError = registerViewModel.validateUserInputs(userEmail, userPassword,repeatPassword)
 
             if (validationError != null) {
-                Toast.makeText(context, validationError, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(validationError), Toast.LENGTH_LONG).show()
             } else {
                 registerViewModel.registerUser(userEmail, password = userPassword)
             }
@@ -58,7 +58,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         }
                         is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
+                            it.error?.let { Toast.makeText(context, getString(it.toInt()), Toast.LENGTH_LONG).show()}
+                            //Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
                         }
                         is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE

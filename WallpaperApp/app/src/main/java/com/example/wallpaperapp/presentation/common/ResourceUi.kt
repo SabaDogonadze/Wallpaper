@@ -6,7 +6,6 @@ sealed class ResourceUi<T>(
     val loading:Boolean = false // this could be an object
 ) {
     data class Success<T>(val dataSuccess: T?) : ResourceUi<T>(data = dataSuccess)
-    class Error<T>(val errorMessage: String) : ResourceUi<T>(error = errorMessage)  // data class is not necessary
+    class Error<T>(val errorMessage: String) : ResourceUi<T>(error = errorMessage)
     class Loading<T>( load: Boolean) : ResourceUi<T>(loading = load) // data class is not necessary
-
 }
