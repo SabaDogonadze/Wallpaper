@@ -18,6 +18,7 @@ import com.example.wallpaperapp.domain.detail.DetailImageModel
 import com.example.wallpaperapp.domain.detail.DetailUnsplashURL
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.bottom_sheet.BottomSheetFragment
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.jar.Pack200
@@ -103,14 +104,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailViewmodel.detailImageResponseFlow.collect {
                     when (it) {
-                        is Resource.Success -> {
+                        is ResourceUi.Success -> {
                             binding.progressBar.visibility = View.GONE
                             Glide.with(requireContext())
                                 .load(it.dataSuccess?.urls?.imageUrl)
                                 .into(binding.ivImage)
                         }
 
-                        is Resource.Error -> {
+                        is ResourceUi.Error -> {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(
                                 context,
@@ -119,7 +120,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                             ).show()
                         }
 
-                        is Resource.Loading -> {
+                        is ResourceUi.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
                         }
 

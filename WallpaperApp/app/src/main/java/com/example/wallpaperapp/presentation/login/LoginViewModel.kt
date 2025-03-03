@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
 import com.example.wallpaperapp.domain.login.LoginRepository
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository,private val dataStoreRepository: DataStoreRepository):ViewModel() {
-    private val _userLogInResponseFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val userLoginResponseFlow: StateFlow<Resource<FirebaseUser>?> = _userLogInResponseFlow
+    private val _userLogInResponseFlow = MutableStateFlow<ResourceUi<FirebaseUser>?>(null)
+    val userLoginResponseFlow: StateFlow<ResourceUi<FirebaseUser>?> = _userLogInResponseFlow
 
     private val _languageFlow = MutableStateFlow("en")
     val languageFlow: StateFlow<String> = _languageFlow
@@ -27,9 +28,9 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         viewModelScope.launch(Dispatchers.IO) {
             val response = loginRepository.logIn(email = email, password = password).collect{
                 when(it){
-                    is Resource.Loading -> {_userLogInResponseFlow.value = Resource.Loading(it.loading)}
-                    is Resource.Success -> {_userLogInResponseFlow.value = Resource.Success(dataSuccess = it.dataSuccess!!)}
-                    is Resource.Error -> {_userLogInResponseFlow.value = Resource.Error(it.errorMessage)}
+                    is Resource.Loading -> {_userLogInResponseFlow.value = ResourceUi.Loading(it.loading)}
+                    is Resource.Success -> {_userLogInResponseFlow.value = ResourceUi.Success(dataSuccess = it.dataSuccess!!)}
+                    is Resource.Error -> {_userLogInResponseFlow.value = ResourceUi.Error(it.errorMessage)}
                 }
             }
         }

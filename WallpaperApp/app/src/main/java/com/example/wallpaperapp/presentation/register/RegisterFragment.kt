@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.databinding.FragmentRegisterBinding
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.example.wallpaperapp.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -48,11 +49,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 registerViewModel.userRegisterResponseFlow.collect{
                     when(it){
-                        is Resource.Success -> {
+                        is ResourceUi.Success -> {
                             binding.progressBar.visibility = View.GONE
                             findNavController().popBackStack()
                         }
-                        is Resource.Error ->  {
+                        is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(
                                 context,
@@ -60,7 +61,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                                 Toast.LENGTH_LONG
                             ).show()
                         }
-                        is Resource.Loading ->{
+                        is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE
                         }
                         null -> PASS

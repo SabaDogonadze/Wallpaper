@@ -6,6 +6,7 @@ import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.domain.detail.DetailImageModel
 import com.example.wallpaperapp.domain.detail.DetailRepository
 import com.example.wallpaperapp.domain.favourite.LocalFavouriteRepository
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository,private val favouriteRepository: LocalFavouriteRepository):ViewModel() {
 
-    private val _detailImageResponseFlow = MutableStateFlow<Resource<DetailImageModel>?>(null)
-    val detailImageResponseFlow: StateFlow<Resource<DetailImageModel>?> = _detailImageResponseFlow
+    private val _detailImageResponseFlow = MutableStateFlow<ResourceUi<DetailImageModel>?>(null)
+    val detailImageResponseFlow: StateFlow<ResourceUi<DetailImageModel>?> = _detailImageResponseFlow
 
     private val _isFavorite = MutableStateFlow(false)
     val isFavorite: StateFlow<Boolean> = _isFavorite
@@ -52,13 +53,13 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
             val response = detailRepository.getDetailImage(id).collect {
                 when (it) {
                     is Resource.Loading -> {
-                        _detailImageResponseFlow.value = Resource.Loading(it.loading)
+                        _detailImageResponseFlow.value = ResourceUi.Loading(it.loading)
                     }
                     is Resource.Success -> {
-                        _detailImageResponseFlow.value = Resource.Success(dataSuccess = it.dataSuccess!!)
+                        _detailImageResponseFlow.value = ResourceUi.Success(dataSuccess = it.dataSuccess!!)
                     }
                     is Resource.Error -> {
-                        _detailImageResponseFlow.value = Resource.Error(it.errorMessage)
+                        _detailImageResponseFlow.value = ResourceUi.Error(it.errorMessage)
                     }
                 }
             }

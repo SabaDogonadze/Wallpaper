@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentLoginBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.example.wallpaperapp.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -46,13 +47,13 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
            repeatOnLifecycle(Lifecycle.State.STARTED){
                 loginViewModel.userLoginResponseFlow.collect{
                     when(it){
-                        is Resource.Success -> {
+                        is ResourceUi.Success -> {
                             binding.progressBar.visibility = View.GONE
                             d("inDadaStore","Resource Succsess shemovida log inshi")
                             loginViewModel.saveEmailAndUserSession(binding.etUserEmail.text.toString())
                             openDiscoveryFragment()
                         }
-                        is Resource.Error ->  {
+                        is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(
                                 context,
@@ -60,7 +61,7 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
                                 Toast.LENGTH_LONG
                             ).show()
                         }
-                        is Resource.Loading ->{
+                        is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE
                         }
                         null -> PASS

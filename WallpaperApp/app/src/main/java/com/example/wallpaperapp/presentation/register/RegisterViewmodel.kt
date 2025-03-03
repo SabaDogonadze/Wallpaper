@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.domain.datastore.DataStoreRepository
 import com.example.wallpaperapp.domain.register.RegisterRepository
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewmodel @Inject constructor(private val registerRepository: RegisterRepository,private val dataStoreRepository: DataStoreRepository) :
     ViewModel() {
-    private val _userRegisterResponseFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val userRegisterResponseFlow: StateFlow<Resource<FirebaseUser>?> =_userRegisterResponseFlow
+    private val _userRegisterResponseFlow = MutableStateFlow<ResourceUi<FirebaseUser>?>(null)
+    val userRegisterResponseFlow: StateFlow<ResourceUi<FirebaseUser>?> =_userRegisterResponseFlow
 
     private val _languageFlow = MutableStateFlow("en")
     val languageFlow: StateFlow<String> = _languageFlow
@@ -29,16 +30,16 @@ class RegisterViewmodel @Inject constructor(private val registerRepository: Regi
             registerRepository.register(email, password).collect {
                 when (it) {
                     is Resource.Loading -> {
-                        _userRegisterResponseFlow.value = Resource.Loading(it.loading)
+                        _userRegisterResponseFlow.value = ResourceUi.Loading(it.loading)
                     }
 
                     is Resource.Success -> {
                         _userRegisterResponseFlow.value =
-                            Resource.Success(dataSuccess = it.dataSuccess!!)
+                            ResourceUi.Success(dataSuccess = it.dataSuccess!!)
                     }
 
                     is Resource.Error -> {
-                        _userRegisterResponseFlow.value = Resource.Error(it.errorMessage)
+                        _userRegisterResponseFlow.value = ResourceUi.Error(it.errorMessage)
                     }
                 }
             }
