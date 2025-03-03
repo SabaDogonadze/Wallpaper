@@ -8,9 +8,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.wallpaperapp.data.common.Resource
-import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.databinding.FragmentRegisterBinding
+import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.example.wallpaperapp.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +29,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             val userPassword = binding.etUserPassword.text.toString()
             val userEmail = binding.etUserEmail.text.toString()
             val repeatPassword = binding.etUserRepeatPassword.text.toString()
-            if(registerViewModel.validateUserInputs(userEmail,userPassword,repeatPassword)){
-                userRegister(email = userEmail, password = userPassword)
+            val validationError = registerViewModel.validateUserInputs(userEmail, userPassword,repeatPassword)
+
+            if (validationError != null) {
+                Toast.makeText(context, validationError, Toast.LENGTH_LONG).show()
+            } else {
+                registerViewModel.registerUser(userEmail, password = userPassword)
             }
         }
         binding.btnLanguage.setOnClickListener{
@@ -55,11 +58,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                         }
                         is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(
-                                context,
-                                "Error: ${it.error}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
                         }
                         is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE

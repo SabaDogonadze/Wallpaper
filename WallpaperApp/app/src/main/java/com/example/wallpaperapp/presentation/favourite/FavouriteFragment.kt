@@ -2,7 +2,6 @@ package com.example.wallpaperapp.presentation.favourite
 
 import android.util.Log.d
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FragmentFavouriteBinding
-import com.example.wallpaperapp.util.extensions.customize
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.util.SwipeAndDeleteCallback
+import com.example.wallpaperapp.util.extensions.customize
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

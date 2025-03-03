@@ -8,7 +8,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.databinding.FragmentLoginBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
 import com.example.wallpaperapp.presentation.common.ResourceUi
@@ -28,7 +27,11 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
         binding.btnLogin.setOnClickListener {
             val userPassword = binding.etUserPassword.text.toString()
             val userEmail = binding.etUserEmail.text.toString()
-            if(loginViewModel.validateUserInputs(userEmail,userPassword)){
+            val validationError = loginViewModel.validateUserInputs(userEmail, userPassword)
+
+            if (validationError != null) {
+                Toast.makeText(context, validationError, Toast.LENGTH_LONG).show()
+            } else {
                 loginViewModel.saveEmailAndUserSession(userEmail)
                 userLogin(email = userEmail, password = userPassword)
             }
@@ -55,11 +58,7 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
                         }
                         is ResourceUi.Error ->  {
                             binding.progressBar.visibility = View.GONE
-                            Toast.makeText(
-                                context,
-                                "Error: ${it.error}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(context, it.error, Toast.LENGTH_LONG).show()
                         }
                         is ResourceUi.Loading ->{
                             binding.progressBar.visibility = View.VISIBLE

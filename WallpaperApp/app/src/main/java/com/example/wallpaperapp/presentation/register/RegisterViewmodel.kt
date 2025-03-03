@@ -39,24 +39,22 @@ class RegisterViewmodel @Inject constructor(private val registerRepository: Regi
                     }
 
                     is Resource.Error -> {
-                        _userRegisterResponseFlow.value = ResourceUi.Error(it.errorMessage)
+                        _userRegisterResponseFlow.value = ResourceUi.Error(mapFirebaseError(it.errorMessage))
                     }
                 }
             }
         }
     }
 
-    fun validateUserInputs(email:String,password:String,repeatPassword:String):Boolean{
-        if(!isValidEmail(email)){
-            return false
+    fun validateUserInputs(email:String,password:String,repeatPassword:String):String?{
+        return when {
+            email.isBlank() -> "Email cannot be empty"
+            !isValidEmail(email) -> "Invalid email format"
+            password !=repeatPassword ->"Passwords Are Not The Same"
+            password.isBlank() -> "Password cannot be empty"
+            password.length < 5 -> "Password must be at least 5 characters long"
+            else -> null  // No error
         }
-        if (repeatPassword != password){
-            return false
-        }
-        if (password.length < 5){
-            return false
-        }
-        return true
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -69,6 +67,15 @@ class RegisterViewmodel @Inject constructor(private val registerRepository: Regi
             val newLanguage = if (currentLanguage == "en") "ka" else "en"
             dataStoreRepository.saveLanguage(newLanguage)
             _languageFlow.value = newLanguage
+        }
+    }
+
+    private fun mapFirebaseError(errorMessage: String): String {
+        return when {
+            errorMessage.contains("There is no user record") -> "No account found with this email."
+            errorMessage.contains("password is invalid") -> "Incorrect password. Please try again."
+            errorMessage.contains("network error") -> "Network error. Please check your internet connection."
+            else -> "Login failed: $errorMessage"
         }
     }
 }

@@ -28,9 +28,9 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         viewModelScope.launch(Dispatchers.IO) {
             val response = loginRepository.logIn(email = email, password = password).collect{
                 when(it){
-                    is Resource.Loading -> {_userLogInResponseFlow.value = ResourceUi.Loading(it.loading)}
-                    is Resource.Success -> {_userLogInResponseFlow.value = ResourceUi.Success(dataSuccess = it.dataSuccess!!)}
-                    is Resource.Error -> {_userLogInResponseFlow.value = ResourceUi.Error(it.errorMessage)}
+                    is Resource.Loading -> _userLogInResponseFlow.value = ResourceUi.Loading(it.loading)
+                    is Resource.Success -> _userLogInResponseFlow.value = ResourceUi.Success(it.dataSuccess!!)
+                    is Resource.Error -> _userLogInResponseFlow.value = ResourceUi.Error(mapFirebaseError(it.errorMessage))
                 }
             }
         }
@@ -42,14 +42,14 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         }
     }
 
-    fun validateUserInputs(email:String,password:String):Boolean{
-        if(!isValidEmail(email)){
-            return false
+    fun validateUserInputs(email:String,password:String):String?{
+        return when {
+            email.isBlank() -> "Email cannot be empty"
+            !isValidEmail(email) -> "Invalid email format"
+            password.isBlank() -> "Password cannot be empty"
+            password.length < 5 -> "Password must be at least 5 characters long"
+            else -> null  // No error
         }
-        if (password.length < 5){
-            return false
-        }
-        return true
     }
 
     private fun isValidEmail(email: String): Boolean {
@@ -62,6 +62,15 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
             val newLanguage = if (currentLanguage == "en") "ka" else "en"
             dataStoreRepository.saveLanguage(newLanguage)
             _languageFlow.value = newLanguage
+        }
+    }
+
+    private fun mapFirebaseError(errorMessage: String): String {
+        return when {
+            errorMessage.contains("There is no user record") -> "No account found with this email."
+            errorMessage.contains("password is invalid") -> "Incorrect password. Please try again."
+            errorMessage.contains("network error") -> "Network error. Please check your internet connection."
+            else -> "Login failed: $errorMessage"
         }
     }
 
