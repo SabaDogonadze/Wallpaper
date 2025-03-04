@@ -17,9 +17,9 @@ Below are some screenshots from the app:
 ![Wallpaper Collection](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot4.png)
 ![Collection_Discovery](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot5.png)
 ![Favourites](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot6.png)
-![Detail_Screen](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot2.png)
-![Bottom_Sheet](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot3.png)
 ![Settings](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot7.png)
+![Bottom_Sheet](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot3.png)
+![Detail_Screen](https://github.com/SabaDogonadze/Wallpaper/blob/main/Screenshots/Screenshot2.png)
 
 ## Features
 
