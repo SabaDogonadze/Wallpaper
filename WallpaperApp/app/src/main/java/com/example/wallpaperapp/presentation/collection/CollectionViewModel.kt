@@ -24,7 +24,7 @@ class CollectionViewModel @Inject constructor(private val collectionRepository: 
                 // When query is empty, return default images
                 collectionRepository.getCollections()
             } else {
-                // Otherwise, return search results for the query
+                //  return search results for the query
                 collectionRepository.getCollectionsBySearch(query)
             }
         }.map { pagingData ->

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wallpaperapp.databinding.DiscoveryImageViewholderBinding
-import com.example.wallpaperapp.domain.discovery.DiscoveryImageModel
 
 class DiscoveryRecyclerAdapter: PagingDataAdapter<DiscoveryImageUi, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<DiscoveryImageUi>() {
     override fun areItemsTheSame(oldItem: DiscoveryImageUi, newItem: DiscoveryImageUi): Boolean {

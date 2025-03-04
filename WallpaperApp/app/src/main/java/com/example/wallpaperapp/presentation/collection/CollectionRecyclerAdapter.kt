@@ -45,7 +45,7 @@ class CollectionRecyclerAdapter : PagingDataAdapter<CollectionUi, RecyclerView.V
         RecyclerView.ViewHolder(binding.root) {
         fun bind(image: CollectionUi) {
             binding.apply {
-                d("SearchView","Shemovida image")
+                d("SearchView","image in")
                 Glide.with(itemView.context).load(image.urls.imageUrl).into(ivCollectionImage)
                 tvCollectionTitle.text = image.title
                 root.setOnClickListener {

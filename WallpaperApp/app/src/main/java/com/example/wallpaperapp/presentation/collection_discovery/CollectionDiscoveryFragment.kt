@@ -41,7 +41,7 @@ class CollectionDiscoveryFragment : BaseFragment<FragmentCollectionDiscoveryBind
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 collectionDiscoveryViewModel.getDiscoveryImages(collectionId).collect { pagingData ->
-                    d("shemovida2","$pagingData")
+                    d("CollectionDiscovery","$pagingData")
                     collectionDiscoveryAdapter.submitData(pagingData)
                 }
             }

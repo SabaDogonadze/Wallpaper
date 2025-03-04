@@ -28,7 +28,6 @@ class BottomSheetFragment : BottomSheetDialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        d("homeScreen","shemovida onviewcreated")
         setUp()
     }
 
@@ -41,7 +40,6 @@ class BottomSheetFragment : BottomSheetDialogFragment(){
             val wallpaperUtil = SetWallpaperUtil(requireContext(), bmp)    // If the bitmap is valid, an instance of SetWallpaperUtil is created with the current context and the bitmap.
 
             binding.tvHomeScreen.setOnClickListener {
-                d("homeScreen","dayenda wesit")
                 wallpaperUtil.setWallpaper(WallpaperTypes.HOME)
                 dismiss()  // dismisses the dialog
             }

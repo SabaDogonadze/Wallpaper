@@ -85,7 +85,7 @@ class DiscoveryFragment :
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrBlank()) {
-                    // User cleared the search view; update the ViewModel with an empty query
+                    // User cleared the search view. update the ViewModel with an empty query
                     discoveryViewModel.searchImages("")
                 }
                 return true

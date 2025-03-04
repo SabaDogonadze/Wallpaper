@@ -36,7 +36,7 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
     override fun clickListeners() {
        collectionAdapter.setonItemClickedListener { item ->
            val action = CollectionFragmentDirections.actionCollectionFragmentToCollectionDiscoveryFragment(item.id)
-           d("ppll","$item")
+           d("collectionAdapter","$item")
            findNavController().navigate(action)
        }
     }
@@ -70,7 +70,7 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrBlank()) {
-                    // User cleared the search view; update the ViewModel with an empty query
+                    // User cleared the search view. update the ViewModel with an empty query
                     collectionViewModel.searchCollections("")
                 }
                 return true

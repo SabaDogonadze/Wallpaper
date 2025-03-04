@@ -22,7 +22,6 @@ class DiscoveryImagePagingSource @Inject constructor(private val discoveryServic
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DiscoveryImageResponse> {
         return try {
-           // delay(2000) // For testing bottom loader visibility
             val currentPage = params.key ?: 1
             val pageSize = params.loadSize
             Log.d("PagingDebug", "Loading page: $currentPage")

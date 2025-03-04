@@ -52,7 +52,6 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
                     when(it){
                         is ResourceUi.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            d("inDadaStore","Resource Succsess shemovida log inshi")
                             loginViewModel.saveEmailAndUserSession(binding.etUserEmail.text.toString())
                             openDiscoveryFragment()
                         }
@@ -75,7 +74,6 @@ class LoginFragment () : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 loginViewModel.languageFlow.collect{language ->
                     setLocale(requireContext(),language)
-                    d("shemovida","shemovida")
                     requireActivity().recreate()
                 }
             }

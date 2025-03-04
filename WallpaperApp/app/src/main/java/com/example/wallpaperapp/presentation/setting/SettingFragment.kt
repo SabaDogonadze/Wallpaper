@@ -30,7 +30,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
     override fun setUp() {
         observers()
-        checkAndRequestPermission()
         clickListeners()
     }
 
@@ -49,7 +48,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
 
-    private val requestPermissionLauncher = registerForActivityResult(
+  /*  private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
@@ -57,7 +56,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         } else {
             Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -88,7 +87,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         }
     }
 
-    private fun checkAndRequestPermission() {
+   /* private fun checkAndRequestPermission() {
         val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             Manifest.permission.READ_MEDIA_IMAGES
         } else {
@@ -100,9 +99,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         } else {
             loadLockScreenWallpaper()
         }
-    }
+    }*/
 
-    @SuppressLint("MissingPermission", "NewApi", "ObsoleteSdkInt")
+/*    @SuppressLint("MissingPermission", "NewApi", "ObsoleteSdkInt")
     private fun loadLockScreenWallpaper() {
         try {
             val wallpaperManager = WallpaperManager.getInstance(requireContext())
@@ -120,7 +119,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "Failed to load wallpapers", Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 
     private fun openLogInFragment() {
         findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToLoginFragment2())

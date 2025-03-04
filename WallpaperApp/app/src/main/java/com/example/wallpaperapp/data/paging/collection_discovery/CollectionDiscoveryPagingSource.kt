@@ -25,7 +25,6 @@ class CollectionDiscoveryPagingSource @Inject constructor(private val collection
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CollectionDiscoveryImageDto> {
         return try {
-            // delay(2000) // For testing bottom loader visibility
             val currentPage = params.key ?: 1
             val pageSize = params.loadSize
             Log.d("PagingSource", "Loading page: $currentPage")
