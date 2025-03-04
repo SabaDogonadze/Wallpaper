@@ -31,7 +31,7 @@ class SettingViewModel @Inject constructor(private val dataStoreRepository: Data
      readEmail()
  }
     private fun readEmail() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepository.readEmail().collect { email ->
                 _emailFlow.value = email // Update the email state
             }
@@ -39,7 +39,7 @@ class SettingViewModel @Inject constructor(private val dataStoreRepository: Data
     }
 
     fun clearSession() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepository.clearSession()  // data store must have i think its own module which is not implemented, so i keep this viewmodel as it is now
             SessionTracker.emitSessionState(false)
         }

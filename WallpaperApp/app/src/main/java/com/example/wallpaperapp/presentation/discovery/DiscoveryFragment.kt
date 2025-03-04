@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.wallpaperapp.R
 import com.example.wallpaperapp.databinding.FragmentDiscoveryBinding
 import com.example.wallpaperapp.presentation.base.BaseFragment
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import com.example.wallpaperapp.util.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -62,7 +63,8 @@ class DiscoveryFragment :
                     adapter.submitData(pagingData)
                 }
             }
-        }*/
+        }
+        */
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

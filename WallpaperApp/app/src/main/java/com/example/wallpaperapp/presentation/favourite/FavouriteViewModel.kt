@@ -22,13 +22,13 @@ class FavouriteViewModel@Inject constructor(private val favouriteRepository: Loc
         Dispatchers.IO)
 
     fun addFavourite(image: DetailImageUi) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favouriteRepository.insert(image.toDomain())
         }
     }
 
     fun removeFavourite(image: DetailImageUi) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favouriteRepository.delete(image.toDomain())
         }
     }

@@ -7,6 +7,7 @@ import androidx.paging.map
 import com.example.wallpaperapp.data.common.Resource
 import com.example.wallpaperapp.data.remote.discovery.DiscoveryImageResponse
 import com.example.wallpaperapp.domain.discovery.DiscoveryRepository
+import com.example.wallpaperapp.presentation.common.ResourceUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,8 +22,10 @@ class DiscoveryViewModel @Inject constructor(private val discoveryRepository: Di
     private val _discoveryImageResponseFlow = MutableStateFlow<Resource<DiscoveryImageUi>?>(null)
     val discoveryImageResponseFlow: StateFlow<Resource<DiscoveryImageUi>?> = _discoveryImageResponseFlow
 
+
     private val _searchQuery = MutableStateFlow<String?>(null)
     val searchQuery: StateFlow<String?> = _searchQuery
+
 /*    private val _discoverySearchImageResponseFlow = MutableStateFlow<Resource<DiscoveryImageResponse>?>(null)
     val discoverySearchImageResponseFlow: StateFlow<Resource<DiscoveryImageResponse>?> = _discoverySearchImageResponseFlow*/
 

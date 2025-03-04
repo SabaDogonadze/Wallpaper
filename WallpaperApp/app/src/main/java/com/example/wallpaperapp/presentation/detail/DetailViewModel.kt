@@ -26,7 +26,7 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     val isFavorite: StateFlow<Boolean> = _isFavorite
 
     fun checkIfFavorite(imageId: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favouriteRepository.getAll()
                 .map { list -> list.any { it.id == imageId } } // Check if the image is in the favorites
                 .collect { isFav ->
@@ -36,14 +36,14 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     }
 
     fun addFavourite(image: DetailImageUi) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO){
             favouriteRepository.insert(image.toDomain())
             _isFavorite.value = true
         }
     }
 
     fun removeFavourite(image: DetailImageUi) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favouriteRepository.delete(image.toDomain())
             _isFavorite.value = false
         }
