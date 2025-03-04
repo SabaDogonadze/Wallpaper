@@ -36,6 +36,8 @@
     <string name="incorrect_password_please_try_again">Incorrect password. Please try again.</string>
     <string name="network_error_please_check_your_internet_connection">Network error. Please check your internet connection.</string>
     <string name="unknown_error">Unknown Error</string>
+    <string name="home_screen_image">Home Screen Image</string>
+    <string name="lock_screen_image">Lock Screen Image</string>
 </resources>
 
 

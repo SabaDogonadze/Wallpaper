@@ -38,4 +38,6 @@
     <string name="incorrect_password_please_try_again">არასწორი პაროლი.გთხოვთ სცადოთ თავიდან</string>
     <string name="network_error_please_check_your_internet_connection">გთხოვთ შეამოწმოთ ინტერნეტთან კავშირი</string>
     <string name="unknown_error">წარმოიშვა უცნობი პრობლემა</string>
+    <string name="home_screen_image">საწყისი ეკრანის სურათი</string>
+    <string name="lock_screen_image">დაბლოკი ეკრანის სურათი</string>
 </resources>

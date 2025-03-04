@@ -11,6 +11,8 @@
 
     <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
         <!-- Set custom icons -->
+        <item name="android:queryHint">Search</item>
+        <item name="android:textColorHint">@android:color/white</item>
         <item name="searchIcon">@drawable/ic_search</item>
         <item name="closeIcon">@drawable/ic_close_search</item>
     </style>
