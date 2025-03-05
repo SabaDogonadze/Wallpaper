@@ -27,7 +27,7 @@ Below are some screenshots from the app:
 - **Customizable Wallpapers:** Set images as your home screen, lock screen, or both.
 - **User Authentication:** Secure registration and login via Firebase.
 - **Offline Access:** View favorite images even without an internet connection.
-- **Multi-Language Support:** The app supports two languages (e.g., English and Spanish).
+- **Multi-Language Support:** The app supports two languages (English and Georgian).
 - **Modern Architecture:** Implements MVVM, Clean Architecture, and the Repository Pattern for maintainability.
 
 
